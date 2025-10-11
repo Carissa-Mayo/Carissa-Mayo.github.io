@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cstyle%3E.a%7Bfill:%23088395;%7D.b%7Bfill:%2305bfdb;%7D.c%7Bfill:%230a4d68;%7D%3C/style%3E%3C/defs%3E%3Ccircle class='a' cx='50' cy='50' r='48'/%3E%3Cpath class='c' d='M15 50Q25 30 35 35Q45 40 50 30Q55 40 65 35Q75 30 85 50' fill='none' stroke='%230a4d68' stroke-width='2.5'/%3E%3Ccircle class='b' cx='25' cy='40' r='2'/%3E%3Ccircle class='b' cx='35' cy='35' r='2'/%3E%3Ccircle class='b' cx='45' cy='38' r='2'/%3E%3Ccircle class='b' cx='50' cy='30' r='2'/%3E%3Ccircle class='b' cx='55' cy='38' r='2'/%3E%3Ccircle class='b' cx='65' cy='35' r='2'/%3E%3Ccircle class='b' cx='75' cy='40' r='2'/%3E%3Cpath class='b' d='M10 70Q20 60 30 70T50 70T70 70T90 70L90 90L10 90z'/%3E%3Cpath class='c' d='M20 75L23 70L26 75M40 75L43 70L46 75M60 75L63 70L66 75' stroke='%230a4d68' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">    <style>
+    <link rel="icon" href="/tabicon.ico" sizes="any">
         * {
             margin: 0;
             padding: 0;
@@ -86,6 +86,56 @@
             background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
             color: white;
             padding: 4rem 2rem;
+        }
+
+        .hero-image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .hero-image-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .hero-image-buttons .btn {
+            justify-content: center;
+        }
+        
+        .hero-text-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resume-button-wrapper {
+            margin-top: 1.5rem;
+        }
+        
+        .btn-resume {
+            background: var(--ocean-mid);
+            color: white;
+        }
+        
+        .btn-resume:hover {
+            background: var(--ocean-deep);
+        }
+        
+        .btn-resume .icon {
+            fill: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-image-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .hero-image-buttons .btn {
+                flex: 1;
+                min-width: 120px;
+            }
         }
 
         .hero-content {
@@ -321,12 +371,56 @@
             line-height: 1.7;
         }
 
+        .achievements-presentation {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: start;
+        }
+        
+        .presentation-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .presentation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+        
+        .presentation-details {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .presentation-details h3 {
+            color: var(--ocean-deep);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .presentation-details p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        
+        .presentation-details strong {
+            color: var(--ocean-mid);
+        }
+        
         .achievements-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-
+        
         .achievement-card {
             background: var(--cream);
             padding: 2rem;
@@ -335,19 +429,23 @@
             border: 1px solid var(--border);
             border-left: 4px solid var(--ocean-mid);
         }
-
+        
         .achievement-card h4 {
             color: var(--ocean-deep);
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
-
+        
         .achievement-card p {
             color: #555;
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        
+        @media (max-width: 968px) {
+            .achievements-presentation {
+                grid-template-columns: 1fr;
+            }
         }
 
         .education-item {
@@ -379,17 +477,42 @@
             line-height: 1.7;
         }
 
-        #personal .container {
+        .personal-content-wrapper {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 3rem;
-            align-items: start;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .personal-main-image {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .personal-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+        
+        .personal-intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .personal-intro p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
         }
         
         .photo-collage {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
         }
         
         .collage-item {
@@ -410,37 +533,12 @@
             transform: scale(1.05);
         }
         
-        .personal-intro {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .personal-intro h2 {
-            text-align: left;
-            justify-content: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        
-        .personal-intro p {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            text-align: left;
-        }
-        
-        @media (max-width: 968px) {
-            #personal .container {
+        @media (max-width: 600px) {
+            .personal-content-wrapper {
                 grid-template-columns: 1fr;
             }
-            
-            .personal-intro h2 {
-                text-align: center;
-                justify-content: center;
-            }
-            
-            .personal-intro p {
-                text-align: center;
+            .photo-collage {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -526,24 +624,13 @@
         </div>
     </nav>
 
-<section id="home" class="hero">
+    <section id="about" class="hero">
         <div class="hero-content">
-            <div class="hero-image">
-                <img src="images/profile.jpeg" alt="Carissa Mayo">
-            </div>
-            <div class="hero-text">
-                <h1>Quantitative Ecologist<br>& Data Scientist</h1>
-                <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. 
-                    I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in 
-                    clam populations using Bayesian methods in the Metzger Lab. My background in statistics and data science from the University of Coloraado provides the quantitative foundation for my work in 
-                    statistical methods, computer science, and data analytics.</p>
-                <div class="contact-buttons">
-                    <a href="resume.pdf" class="btn">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                        </svg>
-                       Resume
-                    </a>
+            <div class="hero-image-section">
+                <div class="hero-image">
+                    <img src="images/profile.jpeg" alt="Carissa Mayo">
+                </div>
+                <div class="hero-image-buttons">
                     <a href="mailto:carissasmayo@gmail.com" class="btn">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -566,13 +653,28 @@
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                         </svg>
-                        Google Scholar
+                        Scholar
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-text-section">
+                <div class="hero-text">
+                    <h1>Quantitative Ecologist<br>& Data Scientist</h1>
+                    <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in clam populations using Bayesian methods in the Metzger Lab. My background in statistics and data science from the University of Colorado provides the quantitative foundation for my work in statistical methods, computer science, and data analytics.</p>
+                </div>
+                <div class="resume-button-wrapper">
+                    <a href="resume.pdf" class="btn btn-resume">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                        Download Resume
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <section id="projects">
         <div class="container">
             <h2> Projects</h2>
@@ -615,7 +717,7 @@
                              <div class="project-citation">
                                 <cite>
                                     Giersch, R., Sevigny, J., Weinandt, S., <strong>Mayo, C.</strong>, et al. Variation in Natural Infection Outcomes and Cancer Cell Release from Soft-Shell 
-                                    Clams (Mya arenaria) with Bivalve Transmissible Neoplasia. <em> PLoS Pathog </em>  <span>21(9).(2025)</span>span>
+                                    Clams (Mya arenaria) with Bivalve Transmissible Neoplasia. <em> PLoS Pathog </em>  <span>21(9).(2025)</span>
                                 </cite>
                             </div>
                             <a href="https://doi.org/10.1371/journal.ppat.1013537" class="project-link">Read Publication</a>
@@ -756,24 +858,33 @@
         </div>
     </section>
 
-    <section id="achievements">
-        <div class="container">
-            <h2>Achievements & Honors</h2>
+<section id="achievements">
+    <div class="container">
+        <h2>Presentations & Awards</h2>
+        
+        <div class="achievements-presentation">
+            <div class="presentation-image">
+                <img src="images/poster-pres.jpeg" alt="Poster presentation">
+            </div>
+            
             <div class="achievements-grid">
                 <div class="achievement-card">
-                    <h4>Travel Grants</h4>
-                    <p> NSF-funded 2025 EEID Pre-Conference Workshop on AI: $1500
-                    <p> STANCON 2024 scholarship: $1000</p>
+                    <h4>📢 Conference Presentations</h4>
+                    <p><strong>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</strong></p>
+                    <p>Ecology and Evolution of Infectious Diseases (EEID) Conference, 2025</p>
+                    <p>Society for Mathematical Biology (SMB) Conference, 2025</p>
+                    <a href="poster.pdf" class="project-link">View Poster</a>
                 </div>
 
                 <div class="achievement-card">
-                    <h4>Conference Presentations</h4>
-                    <p>Poster presentations at EEID and SMB conferences 2025</p>
-                    <a href="#" class="project-link"> View Poster</a>
+                    <h4>✈️ Travel Awards</h4>
+                    <p><strong>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
+                    <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="education">
         <div class="container">
@@ -795,10 +906,21 @@
 
 <section id="personal">
     <div class="container">
-        <div class="photo-collage">
-            <div class="collage-item">
+        <h2>Beyond Research</h2>
+        
+        <div class="personal-content-wrapper">
+            <div class="personal-main-image">
                 <img src="images/personal-1.jpeg" alt="Outdoor activity">
             </div>
+            
+            <div class="personal-intro">
+                <p>Outside of research, you'll find me exploring the Pacific Northwest outdoors or traveling. I am passionate about hiking, skiing, scuba diving, 
+                    capturing the beauty of coastal landscapes through photography, and spending time on the water. These experiences fuel my curiosity about the 
+                    natural world and remind me why conservation matters.</p>
+            </div>
+        </div>
+
+        <div class="photo-collage">
             <div class="collage-item">
                 <img src="images/personal-2.jpeg" alt="Outdoor activity">
             </div>
@@ -814,13 +936,6 @@
             <div class="collage-item">
                 <img src="images/personal-6.jpeg" alt="Outdoor activity">
             </div>
-        </div>
-        
-        <div class="personal-intro">
-            <h2>Beyond Research</h2>
-            <p>Outside of research, you'll find me exploring the Pacific Northwest outdoors or traveling. 
-                I am passionate about hiking, skiing, scuba diving, capturing the beauty of coastal landscapes through photography, and spending time on the water. 
-                These experiences fuel my curiosity about the natural world and remind me why conservation matters.</p>
         </div>
     </div>
 </section>
