@@ -138,6 +138,10 @@
             background: var(--sand);
         }
 
+        .btn .icon {
+            fill: var(--ocean-deep);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -230,6 +234,11 @@
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
+        }
+
+        .project-citation {
+          margin: 0.25rem 0 0;
+          font-size: 0.9rem;
         }
 
         .project-link {
@@ -421,6 +430,20 @@
             margin-top: 1.5rem;
         }
 
+        footer .btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        footer .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer .btn .icon {
+            fill: white;
+        }
+
+
         @media (max-width: 768px) {
             nav ul {
                 gap: 1rem;
@@ -483,8 +506,7 @@
                 <img src="images/profile.jpeg" alt="Carissa Mayo">
             </div>
             <div class="hero-text">
-                <h1>Quantitative Ecologist <h1>
-                </h1>& Data Scientist</h1>
+                <h1>Quantitative Ecologist<br>& Data Scientist</h1>
                 <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in clam populations using Bayesian methods. My background in statistics and data science from CU Boulder provides the quantitative foundation for my work in statistical methods, computer science, and data analytics.</p>
                 <div class="contact-buttons">
                     <a href="mailto:carissasmayo@gmail.com" class="btn">
@@ -549,21 +571,50 @@
             </div>
 
             <div class="project-category">
-                <h3>🧪 Research Experience</h3>
+                <h3>📄 Publications</h3>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="project-timeseries.jpg" alt="Time series analysis">
+                            <img src="pub-clams.jpeg" alt="Time series analysis">
                         </div>
                         <div class="project-content">
-                            <h4>📈 Changepoint Analysis in Time Series</h4>
+                            <h4>Variation in natural infection outcomes and cancer cell release from soft-shell clams (Mya arenaria) with bivalve transmissible neoplasia (2025) </h4>
+                            <p> Identified and described stages of disease through changepoint and regression analyses.</p>
+                            <div class="project-tags">
+                                <span class="tag">Statistical Inference</span>
+                                <span class="tag">R</span>
+                            </div>
+                             <div class="project-citation">
+                                <cite>
+                                    Giersch, R., Sevigny, J., Weinandt, S., <strong>Mayo, C.</strong>, et al. Variation in Natural Infection Outcomes and Cancer Cell Release from Soft-Shell 
+                                    Clams (Mya arenaria) with Bivalve Transmissible Neoplasia. <em> PLoS Pathog </em>  <span>21(9).(2025)</span>span>
+                                </cite>
+                            </div>
+                            <a href="https://doi.org/10.1371/journal.ppat.1013537" class="project-link">Read Publication</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pub-bees.jpeg" alt="Time series analysis">
+                        </div>
+                        <div class="project-content">
+                            <h4> A computational topology-based spatiotemporal analysis technique for honeybee aggregation (2024) </h4>
                             <p>Developed changepoint detection methods for ecological time series data in the Peleg Lab. Contributed to field and laboratory experiments, with findings published in peer-reviewed literature.</p>
                             <div class="project-tags">
                                 <span class="tag">Time Series Analysis</span>
                                 <span class="tag">R</span>
                                 <span class="tag">Field Research</span>
                             </div>
-                            <a href="#" class="project-link">📄 Read Publication</a>
+                            <div class="project-citation">
+                                <cite>
+                                  Gharooni-Fard, G., Byers, M., Deshmukh, V., Bradley, E., <strong>Mayo, C.</strong>, Topaz, C., Peleg, O.
+                                  “A computational topology-based spatiotemporal analysis technique for honeybee aggregation.”
+                                  <em>npj Complex</em> <span>1, 3 (2024)</span>.
+                                </cite>
+                            </div>
+                            <a href="https://doi.org/10.1038/s44260-024-00003-1" class="project-link">Read Publication</a>
                         </div>
                     </div>
                 </div>
