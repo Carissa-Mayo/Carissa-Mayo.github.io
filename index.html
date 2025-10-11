@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Quantitative Ecologist & Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-deep: #0a4d68;
+            --ocean-mid: #088395;
+            --ocean-light: #05bfdb;
+            --sand: #f8f9fa;
+            --cream: #fefefe;
+            --text-dark: #2c3e50;
+            --accent: #00a8cc;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--sand);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ocean-deep);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover {
+            color: var(--ocean-mid);
+        }
+
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: var(--ocean-deep);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--sand);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--ocean-deep);
+            margin-bottom: 3rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .project-category {
+            margin-bottom: 4rem;
+        }
+
+        .project-category h3 {
+            font-size: 1.8rem;
+            color: var(--ocean-mid);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--cream);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: var(--sand);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-card h4 {
+            font-size: 1.3rem;
+            color: var(--ocean-deep);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--ocean-light);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--ocean-mid);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            color: var(--ocean-deep);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--ocean-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--ocean-mid);
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--ocean-light);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.4rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-item .role {
+            color: var(--ocean-mid);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--ocean-mid);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--ocean-mid);
+        }
+
+        .achievement-card h4 {
+            color: var(--ocean-deep);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .achievement-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .education-item {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .education-item h3 {
+            color: var(--ocean-deep);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .education-item .institution {
+            color: var(--ocean-mid);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .education-item .details {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .personal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .personal-item {
+            background: var(--cream);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .personal-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: var(--sand);
+        }
+
+        .personal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .personal-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .personal-content h4 {
+            color: var(--ocean-mid);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .personal-content p {
+            color: #555;
+        }
+
+        footer {
+            background: var(--ocean-deep);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer .contact-buttons {
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            nav a span {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .contact-buttons {
+                justify-content: center;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Your Name</div>
+            <ul>
+                <li><a href="#home">🏠 <span>Home</span></a></li>
+                <li><a href="#projects">🔬 <span>Projects</span></a></li>
+                <li><a href="#experience">💼 <span>Experience</span></a></li>
+                <li><a href="#achievements">🏆 <span>Achievements</span></a></li>
+                <li><a href="#education">🎓 <span>Education</span></a></li>
+                <li><a href="#personal">❤️ <span>Personal</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="your-photo.jpg" alt="Your Name">
+            </div>
+            <div class="hero-text">
+                <h1>Quantitative Ecologist & Data Scientist</h1>
+                <p>I'm a quantitative ecologist and data scientist passionate about applying statistical and computational modeling to understand ecological and marine systems. I'm currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in clam populations using Bayesian methods. My background in statistics and data science from CU Boulder provides the quantitative foundation for my work in ecology, optimization, and machine learning.</p>
+                <div class="contact-buttons">
+                    <a href="mailto:your.email@example.com" class="btn">✉️ Email</a>
+                    <a href="https://linkedin.com/in/yourprofile" class="btn">💼 LinkedIn</a>
+                    <a href="https://github.com/yourusername" class="btn">👨‍💻 GitHub</a>
+                    <a href="resume.pdf" class="btn">📄 CV / Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>🔬 Projects</h2>
+            
+            <div class="project-category">
+                <h3>🔍 Current Research</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-clams.jpg" alt="Clam research">
+                        </div>
+                        <div class="project-content">
+                            <h4>📊 Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
+                            <p>Master's thesis research developing an SEIP (Susceptible-Exposed-Infected-Post-infectious) model to understand disease transmission dynamics in clam populations. Investigating temperature effects on disease progression using Bayesian inference methods.</p>
+                            <div class="project-tags">
+                                <span class="tag">Bayesian Statistics</span>
+                                <span class="tag">R</span>
+                                <span class="tag">Disease Modeling</span>
+                                <span class="tag">Marine Ecology</span>
+                            </div>
+                            <a href="#" class="project-link">🔗 View Poster</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <h3>🧪 Research Experience</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-timeseries.jpg" alt="Time series analysis">
+                        </div>
+                        <div class="project-content">
+                            <h4>📈 Changepoint Analysis in Time Series</h4>
+                            <p>Developed changepoint detection methods for ecological time series data in the Peleg Lab. Contributed to field and laboratory experiments, with findings published in peer-reviewed literature.</p>
+                            <div class="project-tags">
+                                <span class="tag">Time Series Analysis</span>
+                                <span class="tag">R</span>
+                                <span class="tag">Field Research</span>
+                            </div>
+                            <a href="#" class="project-link">📄 Read Publication</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-category">
+                <h3>📚 Academic Projects</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-abm.jpg" alt="Agent-based model">
+                        </div>
+                        <div class="project-content">
+                            <h4>👥 Agent-Based Modeling of Population Dynamics</h4>
+                            <p>Simulated complex ecological interactions using agent-based models to understand emergent population patterns and species coexistence mechanisms.</p>
+                            <div class="project-tags">
+                                <span class="tag">NetLogo</span>
+                                <span class="tag">R</span>
+                                <span class="tag">ABM</span>
+                            </div>
+                            <a href="#" class="project-link">💻 View on GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-salmon.jpg" alt="Salmon research">
+                        </div>
+                        <div class="project-content">
+                            <h4>🐟 Environmental Drivers of Salmon Survival</h4>
+                            <p>Statistical modeling project analyzing relationships between environmental variables and salmon survival rates using generalized linear models and time series methods.</p>
+                            <div class="project-tags">
+                                <span class="tag">Statistical Modeling</span>
+                                <span class="tag">R</span>
+                                <span class="tag">GLM</span>
+                            </div>
+                            <a href="#" class="project-link">📊 View Analysis</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-optimization.jpg" alt="Optimization">
+                        </div>
+                        <div class="project-content">
+                            <h4>⚙️ Optimization for Resource Allocation</h4>
+                            <p>Applied optimization techniques to solve resource allocation problems in environmental management contexts using linear and nonlinear programming.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Optimization</span>
+                                <span class="tag">Applied Math</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-network.jpg" alt="Network analysis">
+                        </div>
+                        <div class="project-content">
+                            <h4>🕸️ Network Analysis of Ecological Systems</h4>
+                            <p>Analyzed ecological interaction networks using graph theory and network metrics to understand community structure and stability.</p>
+                            <div class="project-tags">
+                                <span class="tag">R</span>
+                                <span class="tag">Network Analysis</span>
+                                <span class="tag">Graph Theory</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-ml.jpg" alt="Machine learning">
+                        </div>
+                        <div class="project-content">
+                            <h4>🤖 Machine Learning Workshop Project</h4>
+                            <p>Developed predictive models for ecological outcomes using machine learning techniques including random forests and gradient boosting.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">scikit-learn</span>
+                                <span class="tag">Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>💼 Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>📊 Data Science Intern</h4>
+                    <div class="role">Environment for the Americas</div>
+                    <p>Developed predictive analyses for species occurrence patterns using environmental datasets. Applied statistical modeling and machine learning techniques to support conservation decision-making.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>🔬 Field Research Experience</h4>
+                    <div class="role">Various Projects</div>
+                    <p>Conducted lab and field sampling in marine and freshwater systems across multiple research studies. Gained hands-on experience in ecological data collection, species identification, and field methodology.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>👥 LISA Collaborative Training</h4>
+                    <div class="role">University of Colorado Boulder</div>
+                    <p>Completed intensive training in statistical consulting and interdisciplinary data analysis. Collaborated with researchers from diverse fields to provide statistical guidance and analytical support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <h2>🏆 Achievements & Honors</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h4>🎓 Fully Funded Master's Program</h4>
+                    <p>M.S. in Quantitative Ecology and Resource Management, University of Washington</p>
+                </div>
+
+                <div class="achievement-card">
+                    <h4>🥇 #1 Graduate in Major</h4>
+                    <p>Graduated first in Statistics and Data Science, University of Colorado Boulder</p>
+                </div>
+
+                <div class="achievement-card">
+                    <h4>✈️ Travel Grants</h4>
+                    <p>Received two travel grants for conference presentations</p>
+                </div>
+
+                <div class="achievement-card">
+                    <h4>📢 Conference Presentations</h4>
+                    <p>Two poster presentations at EEID and SMB conferences</p>
+                </div>
+
+                <div class="achievement-card">
+                    <h4>📝 Peer-Reviewed Publication</h4>
+                    <p>Contributor to published research in ecological modeling</p>
+                </div>
+
+                <div class="achievement-card">
+                    <h4>✍️ Ongoing Research</h4>
+                    <p>One manuscript in preparation for publication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>🎓 Education</h2>
+            
+            <div class="education-item">
+                <h3>🏛️ M.S. Quantitative Ecology & Resource Management</h3>
+                <div class="institution">University of Washington (Expected 2026)</div>
+                <div class="details">Focus: Bayesian disease modeling in marine systems. Thesis research on transmissible cancer dynamics in soft-shell clam populations.</div>
+            </div>
+
+            <div class="education-item">
+                <h3>🏛️ B.S. Statistics & Data Science</h3>
+                <div class="institution">University of Colorado Boulder (2023)</div>
+                <div class="details">Minors: Computer Science & Computational Biology. Graduated #1 in major with comprehensive training in statistical theory, computational methods, and data science applications.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="personal">
+        <div class="container">
+            <h2>❤️ Beyond Research</h2>
+            <div class="personal-grid">
+                <div class="personal-item">
+                    <div class="personal-image">
+                        <img src="personal-hiking.jpg" alt="Hiking">
+                    </div>
+                    <div class="personal-content">
+                        <h4>🥾 Hiking</h4>
+                        <p>Exploring trails throughout the Pacific Northwest</p>
+                    </div>
+                </div>
+                <div class="personal-item">
+                    <div class="personal-image">
+                        <img src="personal-diving.jpg" alt="Scuba diving">
+                    </div>
+                    <div class="personal-content">
+                        <h4>🤿 Scuba Diving</h4>
+                        <p>Underwater exploration and marine observation</p>
+                    </div>
+                </div>
+                <div class="personal-item">
+                    <div class="personal-image">
+                        <img src="personal-photography.jpg" alt="Ocean photography">
+                    </div>
+                    <div class="personal-content">
+                        <h4>📸 Ocean Photography</h4>
+                        <p>Capturing marine life and coastal landscapes</p>
+                    </div>
+                </div>
+                <div class="personal-item">
+                    <div class="personal-image">
+                        <img src="personal-boating.jpg" alt="Boating">
+                    </div>
+                    <div class="personal-content">
+                        <h4>⛵ Boating</h4>
+                        <p>Time on the water studying marine environments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <div class="contact-buttons">
+                <a href="mailto:your.email@example.com" class="btn">✉️ Email</a>
+                <a href="https://linkedin.com/in/yourprofile" class="btn">💼 LinkedIn</a>
+                <a href="https://github.com/yourusername" class="btn">👨‍💻 GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--ocean-mid)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
