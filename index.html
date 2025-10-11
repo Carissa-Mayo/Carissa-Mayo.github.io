@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><style>.a{fill:%23088395;}.b{fill:%2305bfdb;}.c{fill:%230a4d68;}</style></defs><circle class='a' cx='50' cy='50' r='48'/><path class='c' d='M15 50Q25 30 35 35Q45 40 50 30Q55 40 65 35Q75 30 85 50' fill='none' stroke='%230a4d68' stroke-width='2.5'/><circle class='b' cx='25' cy='40' r='2'/><circle class='b' cx='35' cy='35' r='2'/><circle class='b' cx='45' cy='38' r='2'/><circle class='b' cx='50' cy='30' r='2'/><circle class='b' cx='55' cy='38' r='2'/><circle class='b' cx='65' cy='35' r='2'/><circle class='b' cx='75' cy='40' r='2'/><path class='b' d='M10 70Q20 60 30 70T50 70T70 70T90 70L90 90L10 90z'/><path class='c' d='M20 75L23 70L26 75M40 75L43 70L46 75M60 75L63 70L66 75' stroke='%230a4d68' stroke-width='1.5' fill='none'/></svg>">
     <style>
         * {
             margin: 0;
@@ -379,49 +380,59 @@
             line-height: 1.7;
         }
 
-        .personal-grid {
+        .personal-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .personal-intro p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .photo-collage {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-
-        .personal-item {
-            background: var(--cream);
+        
+        .collage-item {
+            position: relative;
+            overflow: hidden;
             border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+            aspect-ratio: 1;
         }
-
-        .personal-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: var(--sand);
-        }
-
-        .personal-image img {
+        
+        .collage-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
-
-        .personal-content {
-            padding: 1.5rem;
-            text-align: center;
+        
+        .collage-item:hover img {
+            transform: scale(1.05);
         }
-
-        .personal-content h4 {
-            color: var(--ocean-mid);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        
+        .collage-item.wide {
+            grid-column: span 2;
         }
-
-        .personal-content p {
-            color: #555;
+        
+        .collage-item.tall {
+            grid-row: span 2;
+        }
+        
+        @media (max-width: 768px) {
+            .collage-item.wide {
+                grid-column: span 1;
+            }
+            
+            .collage-item.tall {
+                grid-row: span 1;
+            }
         }
 
         footer {
@@ -773,49 +784,38 @@
         </div>
     </section>
 
-    <section id="personal">
-        <div class="container">
-            <h2> Beyond Research</h2>
-            <div class="personal-grid">
-                <div class="personal-item">
-                    <div class="personal-image">
-                        <img src="personal-hiking.jpg" alt="Hiking">
-                    </div>
-                    <div class="personal-content">
-                        <h4>🥾 Hiking</h4>
-                        <p>Exploring trails throughout the Pacific Northwest</p>
-                    </div>
-                </div>
-                <div class="personal-item">
-                    <div class="personal-image">
-                        <img src="personal-diving.jpg" alt="Scuba diving">
-                    </div>
-                    <div class="personal-content">
-                        <h4>🤿 Scuba Diving</h4>
-                        <p>Underwater exploration and marine observation</p>
-                    </div>
-                </div>
-                <div class="personal-item">
-                    <div class="personal-image">
-                        <img src="personal-photography.jpg" alt="Ocean photography">
-                    </div>
-                    <div class="personal-content">
-                        <h4>📸 Ocean Photography</h4>
-                        <p>Capturing marine life and coastal landscapes</p>
-                    </div>
-                </div>
-                <div class="personal-item">
-                    <div class="personal-image">
-                        <img src="personal-boating.jpg" alt="Boating">
-                    </div>
-                    <div class="personal-content">
-                        <h4>⛵ Boating</h4>
-                        <p>Time on the water studying marine environments</p>
-                    </div>
-                </div>
+<section id="personal">
+    <div class="container">
+        <h2>Beyond Research</h2>
+        
+        <div class="personal-intro">
+            <p>Outside of research, you'll find me exploring the Pacific Northwest outdoors or traveling. 
+                I am passionate about hiking, skiing, scuba diving, capturing the beauty of coastal landscapes through photography, and spending time on the water.
+                These experiences fuel my curiosity about the natural world and remind me why conservation matters.</p>
+        </div>
+
+        <div class="photo-collage">
+            <div class="collage-item tall">
+                <img src="images/personal-1.jpeg" alt="Outdoor activity">
+            </div>
+            <div class="collage-item wide">
+                <img src="images/personal-2.jpg" alt="Outdoor activity">
+            </div>
+            <div class="collage-item">
+                <img src="images/personal-3.jpg" alt="Outdoor activity">
+            </div>
+            <div class="collage-item">
+                <img src="images/personal-4.jpg" alt="Outdoor activity">
+            </div>
+            <div class="collage-item">
+                <img src="images/personal-5.jpg" alt="Outdoor activity">
+            </div>
+            <div class="collage-item">
+                <img src="images/personal-6.jpg" alt="Outdoor activity">
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer>
         <div class="container">
