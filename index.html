@@ -287,7 +287,43 @@
           }
         }
 
+        /* Collapse the box to the image height (no letterboxing) */
+        .project-image,
+        .project-image.project-image--duo {
+          height: auto;          /* stop forcing a tall box */
+          aspect-ratio: auto;    /* remove fixed ratio */
+          background: transparent;
+          overflow: visible;
+        }
         
+        /* Duo layout should NOT stretch children vertically */
+        .project-image--duo {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          align-items: start;     /* key: don't stretch rows to equal height */
+          background: transparent;
+          padding: 0;
+        }
+        
+        /* Images size themselves; no stretch = no extra white above/below */
+        .project-image img,
+        .project-image--duo img {
+          width: 100%;
+          height: auto;          /* key change from 100% */
+          display: block;
+          object-fit: contain;   /* entire image visible */
+          object-position: center;
+          border-radius: 6px;
+          background: transparent;
+        }
+        
+        /* If wildly tall images blow up cards, add a gentle cap: */
+        .project-image img,
+        .project-image--duo img {
+          max-height: 360px;     /* tweak (e.g., 320–420px) */
+        }
+
         /* Content */
         .project-content { padding: 2rem; }
         
