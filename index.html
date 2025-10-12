@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
-    <link rel="icon" href="/tabicon.ico" sizes="any">
+    <link rel="icon" href="/files/tabicon.ico" sizes="any">
     <style>
         * {
             margin: 0;
@@ -61,6 +61,22 @@
             font-weight: 700;
             color: var(--ocean-deep);
         }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .brand-mark {
+            height: 26px;
+            width: 26px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .brand-mark { 
+            image-rendering: -webkit-optimize-contrast;
+        }
 
         nav ul {
             display: flex;
@@ -87,56 +103,6 @@
             background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
             color: white;
             padding: 4rem 2rem;
-        }
-
-        .hero-image-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .hero-image-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .hero-image-buttons .btn {
-            justify-content: center;
-        }
-        
-        .hero-text-section {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .resume-button-wrapper {
-            margin-top: 1.5rem;
-        }
-        
-        .btn-resume {
-            background: var(--ocean-mid);
-            color: white;
-        }
-        
-        .btn-resume:hover {
-            background: var(--ocean-deep);
-        }
-        
-        .btn-resume .icon {
-            fill: white;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-image-buttons {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .hero-image-buttons .btn {
-                flex: 1;
-                min-width: 120px;
-            }
         }
 
         .hero-content {
@@ -262,11 +228,17 @@
         .project-content {
             padding: 2rem;
         }
+        
+        .project-subtitle {
+          margin: -0.25rem 0 1rem;   /* tucks it close to the title */
+          color: #6b7280;            /* muted; or use var(--ocean-mid) if you prefer */
+          font-size: 0.95rem;
+        }
 
         .project-card h4 {
             font-size: 1.3rem;
             color: var(--ocean-deep);
-            margin-bottom: 1rem;
+            margin-bottom: 0.25rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -372,81 +344,116 @@
             line-height: 1.7;
         }
 
+        /* Two equal image tiles, same visual size regardless of source orientation */
+        .timeline-media {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+        
+        .media-frame {
+          position: relative;
+          border-radius: 10px;
+          overflow: hidden;
+          background: var(--sand);        /* nice fallback/background */
+          aspect-ratio: 4/3;              /* common box size; pick 4/3 or 16/9 */
+          box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+          border: 1px solid var(--border);
+        }
+        
+        .media-frame img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;              /* fills box, crops edges neatly */
+          object-position: center;
+        }
+        
+        /* Mobile: stack images */
+        @media (max-width: 700px) {
+          .timeline-media {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        
         .achievements-presentation {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            align-items: start;
+          display: grid;
+          grid-template-columns: 2fr 1.2fr; /* wider photo */
+          gap: 2.5rem;
+          margin-bottom: 3rem;
+          align-items: start;
         }
         
+        /* Image wrapper */
         .presentation-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
+        /* If your source is truly landscape, use 16:9 to avoid cropping height */
         .presentation-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 3/4;
+          width: 100%;
+          height: auto;                /* don’t force height */
+          aspect-ratio: 16/9;          /* landscape */
+          object-fit: cover;           /* fills the frame without letterboxing */
+          object-position: center;     /* keep center in view */
         }
         
-        .presentation-details {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        
-        .presentation-details h3 {
-            color: var(--ocean-deep);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .presentation-details p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
-        }
-        
-        .presentation-details strong {
-            color: var(--ocean-mid);
-        }
-        
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
+        /* --- Combined card --- */
         .achievement-card {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--ocean-mid);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--ocean-mid);
+          background: var(--cream);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
         
+        /* simple internal layout: stack sections */
+        .achievement-card .section {
+          padding: 1.5rem 2rem;
+        }
+        
+        .achievement-card .section + .section {
+          border-top: 1px solid var(--border);
+        }
+        
+        .achievement-card h3,
         .achievement-card h4 {
-            color: var(--ocean-deep);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+          color: var(--ocean-deep);
+          margin-bottom: 0.75rem;
+          font-size: 1.3rem;
         }
         
         .achievement-card p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
+          color: #555;
+          line-height: 1.7;
+          margin-bottom: 0.5rem;
         }
         
+        .achievement-card strong { color: var(--ocean-mid); }
+        
+        .project-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-top: 0.75rem;
+          color: var(--ocean-mid);
+          text-decoration: none;
+          font-weight: 600;
+        }
+        .project-link:hover { color: var(--ocean-deep); }
+        
+        /* Responsive */
         @media (max-width: 968px) {
-            .achievements-presentation {
-                grid-template-columns: 1fr;
-            }
+          .achievements-presentation {
+            grid-template-columns: 1fr; /* stack */
+          }
+          .presentation-image img {
+            aspect-ratio: auto;  /* let it be natural on mobile */
+            height: auto;
+          }
         }
 
         .education-item {
@@ -479,25 +486,24 @@
         }
 
         .personal-content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 3rem;
+          display: grid;
+          grid-template-columns: 1.8fr 1fr; /* more room to the photo */
+          gap: 2rem;
+          align-items: center;
+          margin-bottom: 3rem;
         }
         
         .personal-main-image {
-            border-radius: 12px;
-            overflow: hidden;
+          border-radius: 12px;
+          overflow: hidden;
         }
         
         .personal-main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 3/4;
+          width: 100%;
+          height: auto;        /* don't stretch */
+          object-fit: contain; /* no cropping */
         }
-        
+                
         .personal-intro {
             display: flex;
             flex-direction: column;
@@ -613,13 +619,16 @@
 <body>
     <nav>
         <div class="container">
-            <div class="logo">Carissa Mayo</div>
+            <div class="logo">
+              <img src="tabicon.ico" alt="" class="brand-mark">
+              <span>Carissa Mayo</span>
+            </div>
             <ul>
                 <li><a href="#about"> <span>About</span></a></li>
                 <li><a href="#projects"> <span>Projects</span></a></li>
                 <li><a href="#experience"> <span>Experience</span></a></li>
-                <li><a href="#achievements"> <span>Achievements</span></a></li>
                 <li><a href="#education"> <span>Education</span></a></li>
+                <li><a href="#achievements"> <span>Presentations</span></a></li>
                 <li><a href="#personal"> <span>Personal</span></a></li>
             </ul>
         </div>
@@ -627,11 +636,22 @@
 
     <section id="about" class="hero">
         <div class="hero-content">
-            <div class="hero-image-section">
-                <div class="hero-image">
-                    <img src="images/profile.jpeg" alt="Carissa Mayo">
-                </div>
-                <div class="hero-image-buttons">
+            <div class="hero-image">
+                <img src="images/profile.jpeg" alt="Carissa Mayo">
+            </div>
+            <div class="hero-text">
+                <h1>Quantitative Ecologist<br>& Data Scientist</h1>
+                <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. 
+                    I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in 
+                    clam populations using Bayesian methods. My background in statistics and data science from the University of Coloraado provides the quantitative foundation for my work in 
+                    statistical methods, computer science, and data analytics.</p>
+                <div class="contact-buttons">
+                    <a href="files/resume.pdf" class="btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                       View Resume
+                    </a>
                     <a href="mailto:carissasmayo@gmail.com" class="btn">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -658,21 +678,6 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="hero-text-section">
-                <div class="hero-text">
-                    <h1>Quantitative Ecologist<br>& Data Scientist</h1>
-                    <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in clam populations using Bayesian methods in the Metzger Lab. My background in statistics and data science from the University of Colorado provides the quantitative foundation for my work in statistical methods, computer science, and data analytics.</p>
-                </div>
-                <div class="-button-wrapper">
-                    <a href="/resume.pdf" class="btn btn-resume">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                        </svg>
-                        Download Resume
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
     
@@ -685,10 +690,11 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="project-clams.jpg" alt="Clam research">
+                            <img src="images/research-1.jpeg" alt="Clam research">
                         </div>
                         <div class="project-content">
                             <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
+                            <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
                             <p>Master's thesis research developing a marine disease model to understand disease transmission dynamics in clam populations. Investigating temperature effects on disease progression using Bayesian inference methods.</p>
                             <div class="project-tags">
                                 <span class="tag">Bayesian Statistics</span>
@@ -710,7 +716,7 @@
                         </div>
                         <div class="project-content">
                             <h4>Variation in natural infection outcomes and cancer cell release from soft-shell clams (Mya arenaria) with bivalve transmissible neoplasia (2025) </h4>
-                            <p> Identified and described stages of disease through changepoint and regression analyses.</p>
+                            <p> Identified and described stages of disease through changepoint and regression analyses in the Metzger Lab.</p>
                             <div class="project-tags">
                                 <span class="tag">Statistical Inference</span>
                                 <span class="tag">R</span>
@@ -849,6 +855,15 @@
                     <div class="role">Various Projects</div>
                     <p>Conducted lab and field sampling in marine and terrestrial systems across multiple research studies and institutes including the BioFrontiers Institiute and the Pacific Northwest Research Institute. Gained hands-on experience in ecological data collection, species identification, and field methodology.</p>
                 </div>
+
+                <div class="timeline-media">
+                    <figure class="media-frame">
+                      <img src="images/field-2.jpg" alt="Fieldwork in the apiary with the Peleg Lab at CU">
+                    </figure>
+                    <figure class="media-frame">
+                      <img src="images/field-1.jpg" alt="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
+                    </figure>
+                </div>
                 
                 <div class="timeline-item">
                     <h4>📊 Data Science Intern</h4>
@@ -859,33 +874,35 @@
         </div>
     </section>
 
-<section id="achievements">
-    <div class="container">
+    <section id="achievements">
+      <div class="container">
         <h2>Presentations & Awards</h2>
-        
+    
         <div class="achievements-presentation">
-            <div class="presentation-image">
-                <img src="images/poster-pres.jpeg" alt="Poster presentation">
+          <div class="presentation-image">
+            <img src="images/poster-pres.jpeg" alt="Poster presentation">
+          </div>
+    
+          <!-- One combined card -->
+          <div class="achievement-card">
+            <div class="section">
+              <h3>📢 Conference Presentations</h3>
+              <p><strong>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</strong></p>
+              <p>Ecology and Evolution of Infectious Diseases (EEID) Conference, 2025</p>
+              <p>Society for Mathematical Biology (SMB) Conference, 2025</p>
+              <a href="files/poster.pdf" class="project-link">View Poster</a>
             </div>
-            
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <h4>📢 Conference Presentations</h4>
-                    <p><strong>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</strong></p>
-                    <p>Ecology and Evolution of Infectious Diseases (EEID) Conference, 2025</p>
-                    <p>Society for Mathematical Biology (SMB) Conference, 2025</p>
-                    <a href="/poster.pdf" class="project-link">View Poster</a>
-                </div>
-
-                <div class="achievement-card">
-                    <h4>✈️ Travel Awards</h4>
-                    <p><strong>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
-                    <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
-                </div>
+    
+            <div class="section">
+              <h3>✈️ Travel Awards</h3>
+              <p><strong>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
+              <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
             </div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
+
 
     <section id="education">
         <div class="container">
