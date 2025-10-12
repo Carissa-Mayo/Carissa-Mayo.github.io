@@ -326,6 +326,64 @@ font-size: 0.9rem;
   color: var(--ocean-deep);
 }
 
+/* Make the card a column so the footer can pin to the bottom */
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer row: right-aligned CTA (GitHub icon → "View Project" → arrow) */
+.project-actions {
+  margin-top: auto; /* push footer to bottom of the card */
+  padding: 0.75rem 1.25rem 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* everything to the right */
+}
+
+/* Only affect the CTA inside the footer, not other links */
+.project-actions .project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0; /* override your global margin for consistency here */
+  color: var(--ocean-mid);
+  text-decoration: none;
+  font-weight: 600;
+
+  /* optional: pill button look; remove these two lines if you prefer text-only */
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.project-actions .project-link:hover {
+  background: #fff;
+  color: var(--ocean-deep);
+  transform: translateX(2px);
+}
+
+/* Icon sizing that matches your scale */
+.project-link .lucide { width: 18px; height: 18px; }
+.project-card h4 .lucide,
+.icon-title { width: 20px; height: 20px; }
+
+/* Nudge the arrow on hover */
+.project-actions .project-link:hover .lucide[data-lucide="arrow-right"] {
+  transform: translateX(3px);
+  transition: transform 0.15s ease;
+}
+
+/* Compact padding on small screens */
+@media (max-width: 520px) {
+  .project-actions { padding: 0.5rem 0.75rem 0.75rem; }
+  .project-actions .project-link { padding: 0.4rem 0.6rem; }
+}
+
 .timeline {
   position: relative;
   padding-left: 3rem;
