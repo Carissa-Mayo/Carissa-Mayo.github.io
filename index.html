@@ -220,7 +220,7 @@
         
         .project-image--duo { 
           display: grid; 
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1.5fr 1fr;
           gap: 8px; 
           align-items: stretch;
           padding: 8px;
@@ -237,10 +237,6 @@
           border-radius: 6px;
         }
 
-        @media (max-width: 520px) {
-          .project-image.project-image--duo { height: 200px; }
-        }
-
         .project-image {
           width: 100%;
           height: 220px;
@@ -254,6 +250,16 @@
           object-fit: cover;
           object-position: center;
           display: block;
+        }
+
+        .project-image.project-image--duo { 
+          height: auto;
+          aspect-ratio: 16/9;   /* or 4/3 */
+        }
+        .project-image.project-image--duo img {
+          object-fit: contain;
+          object-position: center;
+          background: #fff;
         }
 
         .project-content {
@@ -798,6 +804,22 @@
                                 <span class="tag">NetLogo</span>
                                 <span class="tag">R</span>
                                 <span class="tag">ABM</span>
+                            </div>
+                            <a href="#" class="project-link">📊 View Analysis</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="project-salmon.jpg" alt="Salmon research">
+                        </div>
+                        <div class="project-content">
+                            <h4>🐟 Environmental Drivers of Salmon Survival</h4>
+                            <p>Statistical modeling project analyzing relationships between environmental variables and salmon survival rates using generalized linear models and time series methods.</p>
+                            <div class="project-tags">
+                                <span class="tag">Statistical Modeling</span>
+                                <span class="tag">R</span>
+                                <span class="tag">GLM</span>
                             </div>
                             <a href="#" class="project-link">📊 View Analysis</a>
                         </div>
