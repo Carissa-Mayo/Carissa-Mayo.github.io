@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
-    <link rel="icon" href="/files/favicon.ico" sizes="any">
+    <link rel="icon" href="/files/tabicon.ico" sizes="any">
     <style>
         * {
             margin: 0;
@@ -250,6 +250,43 @@
           border-radius: 6px;
           background: transparent;
         }
+
+        /* SHOW MORE IMAGE (less crop) */
+        .project-image,
+        .project-image.project-image--duo {
+          height: auto;            /* stop forcing a short box */
+          aspect-ratio: 4 / 3;     /* taller box => less crop; try 3/2 if you want even more */
+          background: #fff;        /* subtle backdrop if there are tiny bars */
+          overflow: hidden;
+        }
+        
+        /* Use contain so the whole image fits */
+        .project-image img,
+        .project-image--duo img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: contain;      /* key change from cover */
+          object-position: center;  /* center the framing */
+          border-radius: 6px;
+        }
+        
+        /* Keep the duo layout; no inner padding that adds white rims */
+        .project-image--duo {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          background: #fff;
+        }
+        
+        /* Optional: tune per breakpoint */
+        @media (max-width: 520px) {
+          .project-image,
+          .project-image.project-image--duo {
+            aspect-ratio: 3 / 2;   /* a bit shorter on phones if desired */
+          }
+        }
+
         
         /* Content */
         .project-content { padding: 2rem; }
