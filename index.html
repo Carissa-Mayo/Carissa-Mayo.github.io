@@ -226,102 +226,50 @@
           object-position: center;
         }
         
-        /* Duo variant — no inner padding; images fill */
+        /* --- Duo image layout: consistent heights, no stray whitespace --- */
+        
+        /* The grid wrapper for the two images */
         .project-image--duo {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 8px;
-          background: #fff;
-        }
-        
-        /* Size the duo container consistently; no aspect-ratio conflicts */
-        .project-image.project-image--duo {
-          height: clamp(180px, 28vw, 320px);
-          overflow: hidden;
-        }
-        
-        /* Duo images: fill without letterboxing */
-        .project-image--duo img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;     /* switch to 'contain' if you must avoid any crop */
-          object-position: 50% 30%; /* bias crop slightly upward; change to center if preferred */
-          border-radius: 6px;
-          background: transparent;
-        }
-
-        /* SHOW MORE IMAGE (less crop) */
-        .project-image,
-        .project-image.project-image--duo {
-          height: auto;            /* stop forcing a short box */
-          aspect-ratio: 4 / 3;     /* taller box => less crop; try 3/2 if you want even more */
-          background: #fff;        /* subtle backdrop if there are tiny bars */
-          overflow: hidden;
-        }
-        
-        /* Use contain so the whole image fits */
-        .project-image img,
-        .project-image--duo img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: contain;      /* key change from cover */
-          object-position: center;  /* center the framing */
-          border-radius: 6px;
-        }
-        
-        /* Keep the duo layout; no inner padding that adds white rims */
-        .project-image--duo {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
-          background: #fff;
-        }
-        
-        /* Optional: tune per breakpoint */
-        @media (max-width: 520px) {
-          .project-image,
-          .project-image.project-image--duo {
-            aspect-ratio: 3 / 2;   /* a bit shorter on phones if desired */
-          }
-        }
-
-        /* Collapse the box to the image height (no letterboxing) */
-        .project-image,
-        .project-image.project-image--duo {
-          height: auto;          /* stop forcing a tall box */
-          aspect-ratio: auto;    /* remove fixed ratio */
-          background: transparent;
-          overflow: visible;
-        }
-        
-        /* Duo layout should NOT stretch children vertically */
-        .project-image--duo {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
-          align-items: start;     /* key: don't stretch rows to equal height */
-          background: transparent;
+          align-items: stretch;
+          background: #fff;   /* optional rim color */
           padding: 0;
-        }
-        
-        /* Images size themselves; no stretch = no extra white above/below */
-        .project-image img,
-        .project-image--duo img {
-          width: 100%;
-          height: auto;          /* key change from 100% */
-          display: block;
-          object-fit: contain;   /* entire image visible */
-          object-position: center;
+          overflow: hidden;
           border-radius: 6px;
-          background: transparent;
         }
         
-        /* If wildly tall images blow up cards, add a gentle cap: */
-        .project-image img,
-        .project-image--duo img {
-          max-height: 360px;     /* tweak (e.g., 320–420px) */
+        /* Each cell is a ratio box so both sides match height */
+        .project-image--duo .duo-cell {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3;        /* tweak per your content: 3/2 or 16/9 also fine */
+          overflow: hidden;
+          border-radius: 6px;
+          background: #fff;           /* shows if an image has transparency */
+        }
+        
+        /* Images fill the cell with no right/bottom bars */
+        .project-image--duo .duo-cell img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;          /* default = no letterboxing */
+          object-position: center;    /* adjust if you want higher crop, e.g., 50% 30% */
+        }
+        
+        /* Override for odd aspect images (e.g., ultra-wide banner) to avoid cropping */
+        .project-image--duo .duo-cell img.img-contain {
+          object-fit: contain;        /* will letterbox but keeps full image */
+          background: #fff;           /* small bars blend with card */
+        }
+        
+        /* Optional: different ratio on small screens so it’s not too tall */
+        @media (max-width: 520px) {
+          .project-image--duo .duo-cell { aspect-ratio: 3 / 2; }
         }
 
         /* Content */
@@ -353,12 +301,6 @@
           flex-wrap: wrap;
           gap: 0.5rem;
           margin-top: 1rem;
-        }
-        
-        /* Optional: tighten on small screens */
-        @media (max-width: 520px) {
-          .project-image { height: 200px; }
-          .project-image.project-image--duo { height: 200px; }
         }
 
         .tag {
@@ -788,11 +730,15 @@
                 <h3>🔍 Current Research</h3>
                 <div class="projects-grid">
                     <div class="project-card">
-                      <div class="project-image project-image--duo">
-                        <img src="images/research-1.jpeg" alt="Fieldwork — landscape" class="main">
-                        <img src="images/research-2.jpeg" alt="Fieldwork — portrait" class="side">
+                    <div class="project-image--duo">
+                      <div class="duo-cell">
+                        <img src="images/research-1.jpeg" alt="">
                       </div>
-                    
+                      <div class="duo-cell">
+                        <img src="images/research-2.jpeg" alt="">
+                      </div>
+                    </div>
+                                        
                       <div class="project-content">
                         <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
                         <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
