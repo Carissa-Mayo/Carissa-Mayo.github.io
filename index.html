@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
-    <link rel="icon" href="files/tabicon.ico?v=2" type="image/x-icon">
+    <link rel="icon" href="/files/favicon.ico" sizes="any">
     <style>
         * {
             margin: 0;
@@ -187,110 +187,105 @@
             gap: 1rem;
         }
 
-        .project-category {
-            margin-bottom: 4rem;
-        }
-
+        .project-category { margin-bottom: 4rem; }
+        
         .project-category h3 {
-            font-size: 1.8rem;
-            color: var(--ocean-mid);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--cream);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .project-image.project-image--duo { 
-            height: 200px; 
+          font-size: 1.8rem;
+          color: var(--ocean-mid);
+          margin-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
         }
         
-        .project-image--duo { 
-          display: grid; 
-          grid-template-columns: 1.5fr 1fr;
-          gap: 8px; 
-          align-items: stretch;
-          padding: 8px;
-          background: #fff;
+        .projects-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2rem;
         }
-
-        .project-image--duo img {
-          width: 100%; 
-          height: 100%;
-          object-fit: contain;
-          object-position: center;
-          background: #fff;
-          display: block; 
-          border-radius: 6px;
+        
+        .project-card {
+          background: var(--cream);
+          border-radius: 12px;
+          overflow: hidden;
+          border: 1px solid var(--border);
         }
-
+        
+        /* Single-image default */
         .project-image {
           width: 100%;
           height: 220px;
           overflow: hidden;
           background: var(--sand);
         }
-        
         .project-image img {
           width: 100%;
           height: 100%;
+          display: block;
           object-fit: cover;
           object-position: center;
-          display: block;
         }
-
-        .project-image.project-image--duo { 
-          height: auto;
-          aspect-ratio: 16/9;   /* or 4/3 */
-        }
-        .project-image.project-image--duo img {
-          object-fit: contain;
-          object-position: center;
+        
+        /* Duo variant — no inner padding; images fill */
+        .project-image--duo {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
           background: #fff;
         }
-
-        .project-content {
-            padding: 2rem;
+        
+        /* Size the duo container consistently; no aspect-ratio conflicts */
+        .project-image.project-image--duo {
+          height: clamp(180px, 28vw, 320px);
+          overflow: hidden;
         }
+        
+        /* Duo images: fill without letterboxing */
+        .project-image--duo img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;     /* switch to 'contain' if you must avoid any crop */
+          object-position: 50% 30%; /* bias crop slightly upward; change to center if preferred */
+          border-radius: 6px;
+          background: transparent;
+        }
+        
+        /* Content */
+        .project-content { padding: 2rem; }
         
         .project-subtitle {
           margin: -0.25rem 0 1rem;
           color: #6b7280;
           font-size: 0.95rem;
         }
-
+        
         .project-card h4 {
-            font-size: 1.3rem;
-            color: var(--ocean-deep);
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+          font-size: 1.3rem;
+          color: var(--ocean-deep);
+          margin-bottom: 0.25rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
-
+        
         .project-card p {
-            margin-bottom: 1rem;
-            color: #555;
-            line-height: 1.7;
+          margin-bottom: 1rem;
+          color: #555;
+          line-height: 1.7;
         }
-
+        
         .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 1rem;
+        }
+        
+        /* Optional: tighten on small screens */
+        @media (max-width: 520px) {
+          .project-image { height: 200px; }
+          .project-image.project-image--duo { height: 200px; }
         }
 
         .tag {
@@ -431,7 +426,7 @@
 
         .achievements-presentation {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1.5fr 1fr;
           gap: 2rem;
           margin-bottom: 3rem;
           align-items: stretch;
