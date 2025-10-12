@@ -130,6 +130,7 @@
         .hero-text h1 {
             font-size: 2.8rem;
             margin-bottom: 1rem;
+            white-space: nowrap;
         }
 
         .hero-text p {
@@ -212,40 +213,35 @@
             border: 1px solid var(--border);
         }
 
-     /* only affect duo headers */
-.project-image.project-image--duo { height: 220px; } /* was 200 */
-.project-image--duo { 
-  display: grid; 
-  grid-template-columns: 5fr 2fr; /* give main more width */
-  gap: 6px; 
-  align-items: stretch;
-}
+        .project-image.project-image--duo { 
+            height: 220px; 
+        }
+        
+        .project-image--duo { 
+          display: grid; 
+          grid-template-columns: 1fr 1fr;
+          gap: 6px; 
+          align-items: stretch;
+        }
 
-/* MAIN: show whole image */
-.project-image--duo .main {
-  width: 100%; height: 100%;
-  object-fit: contain;          /* ← no crop */
-  object-position: center;
-  background: #fff;             /* subtle letterbox */
-  display: block; border-radius: 6px;
-}
+        .project-image--duo .main,
+        .project-image--duo .side {
+          width: 100%; 
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          background: #fff;
+          display: block; 
+          border-radius: 6px;
+        }
 
-/* SIDE: can crop freely */
-.project-image--duo .side {
-  width: 100%; height: 100%;
-  object-fit: cover;            /* ok to crop */
-  object-position: center;
-  display: block; border-radius: 6px;
-}
-
-@media (max-width: 520px) {
-  .project-image.project-image--duo { height: 200px; }
-  .project-image--duo { grid-template-columns: 3fr 2fr; }
-}
+        @media (max-width: 520px) {
+          .project-image.project-image--duo { height: 200px; }
+        }
 
         .project-image {
           width: 100%;
-          height: 220px;           /* consistent header height; tweak 200–260 */
+          height: 220px;
           overflow: hidden;
           background: var(--sand);
         }
@@ -253,8 +249,8 @@
         .project-image img {
           width: 100%;
           height: 100%;
-          object-fit: cover;        /* modern “full-bleed”; switch to 'contain' for no crop */
-          object-position: center;  /* adjust per-image if needed with helper classes */
+          object-fit: cover;
+          object-position: center;
           display: block;
         }
 
@@ -263,8 +259,8 @@
         }
         
         .project-subtitle {
-          margin: -0.25rem 0 1rem;   /* tucks it close to the title */
-          color: #6b7280;            /* muted; or use var(--ocean-mid) if you prefer */
+          margin: -0.25rem 0 1rem;
+          color: #6b7280;
           font-size: 0.95rem;
         }
 
@@ -375,24 +371,32 @@
         .timeline-item p {
             color: #555;
             line-height: 1.7;
+            margin-bottom: 1rem;
         }
 
-        /* Media grid stays compact inside the card */
+        .field-content-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          align-items: start;
+        }
+
+        .field-text {
+          padding-right: 1rem;
+        }
+
         .timeline-media {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.6rem;
-          margin-top: 0.9rem;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.8rem;
         }
         
-        /* Smaller tiles with consistent ratio */
         .media-frame {
           position: relative;
           border-radius: 10px;
           overflow: hidden;
           background: var(--sand);
-          aspect-ratio: 4/3;           /* balanced; smaller than before */
-          max-height: 160px;           /* ↓ hard cap so images aren't huge */
+          aspect-ratio: 4/3;
           border: 1px solid var(--border);
           box-shadow: 0 3px 10px rgba(0,0,0,0.06);
         }
@@ -400,85 +404,83 @@
         .media-frame img {
           width: 100%;
           height: 100%;
-          object-fit: cover;           /* fill neatly */
-          object-position: center;     /* default center */
+          object-fit: cover;
           display: block;
+          cursor: help;
         }
         
-        /* Portrait helper: still cover, but prioritize higher crop */
-        .media-frame.is-portrait img {
-          object-position: center 20%; /* show more top */
-        }
-        
-        /* If the portrait is still too zoomed, switch to contain just for that one: */
-        /* .media-frame.is-portrait img { object-fit: contain; background:#fff; } */
-        
-        @media (max-width: 700px) {
-          .timeline-media { grid-template-columns: 1fr 1fr; }
+        .media-frame.focus-top img {
+          object-position: center 20%;
         }
 
-        /* Grid: keep columns, but center items vertically */
+        .media-frame.focus-center img {
+          object-position: center;
+        }
+        
+        @media (max-width: 768px) {
+          .field-content-wrapper {
+            grid-template-columns: 1fr;
+          }
+          .field-text {
+            padding-right: 0;
+          }
+        }
+
         .achievements-presentation {
           display: grid;
           grid-template-columns: 2fr 1.2fr;
           gap: 2.0rem;
           margin-bottom: 3rem;
-          align-items: center;          /* center both by default */
+          align-items: center;
         }
         
-        /* If you want ONLY the image centered (and the card top-aligned), do this instead: */
-        /* .achievements-presentation { align-items: start; } */
-        /* .presentation-image { align-self: center; } */
-        
-        /* Image container controls shape/size; image fits inside without zoom */
         .presentation-image {
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        
-          aspect-ratio: 16/9;                      /* landscape frame */
-          height: clamp(220px, 28vw, 360px);       /* responsive but not huge */
           width: 100%;
-          justify-self: center;                    /* stay centered within column */
-          align-self: center;                      /* vertical centering vs right */
+          justify-self: center;
+          align-self: center;
         }
         
-        /* Show the whole photo (no zoom); letterboxing is expected if ratios differ */
         .presentation-image img {
           width: 100%;
-          height: 100%;
-          object-fit: contain;                     /* ← avoids crop/zoom */
+          height: auto;
+          object-fit: cover;
           object-position: center;
-          background: #fff;                        /* subtle letterbox backdrop */
           display: block;
         }
         
-        /* Right-hand card remains natural height */
         .achievement-card {
           background: var(--cream);
           border: 1px solid var(--border);
           border-radius: 12px;
-          overflow: hidden;
+          padding: 2rem;
           box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
-        
-        /* Mobile: stack; keep photo reasonable */
-        @media (max-width: 968px) {
-          .achievements-presentation { grid-template-columns: 1fr; }
-          .presentation-image { height: clamp(200px, 45vw, 300px); }
+
+        .achievement-card .section {
+          margin-bottom: 2rem;
         }
 
-        .project-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          margin-top: 0.75rem;
-          color: var(--ocean-mid);
-          text-decoration: none;
-          font-weight: 600;
+        .achievement-card .section:last-child {
+          margin-bottom: 0;
         }
-        .project-link:hover { color: var(--ocean-deep); }
+
+        .achievement-card h3 {
+          font-size: 1.3rem;
+          color: var(--ocean-mid);
+          margin-bottom: 1rem;
+        }
+
+        .achievement-card p {
+          margin-bottom: 0.5rem;
+          line-height: 1.6;
+        }
         
+        @media (max-width: 968px) {
+          .achievements-presentation { grid-template-columns: 1fr; }
+        }
 
         .education-item {
             background: var(--cream);
@@ -511,7 +513,7 @@
 
         .personal-content-wrapper {
           display: grid;
-          grid-template-columns: 1.8fr 1fr; /* more room to the photo */
+          grid-template-columns: 1.8fr 1fr;
           gap: 2rem;
           align-items: center;
           margin-bottom: 3rem;
@@ -524,8 +526,8 @@
         
         .personal-main-image img {
           width: 100%;
-          height: auto;        /* don't stretch */
-          object-fit: contain; /* no cropping */
+          height: auto;
+          object-fit: contain;
         }
                 
         .personal-intro {
@@ -598,7 +600,6 @@
             fill: white;
         }
 
-
         @media (max-width: 768px) {
             nav ul {
                 gap: 1rem;
@@ -616,6 +617,7 @@
 
             .hero-text h1 {
                 font-size: 2rem;
+                white-space: normal;
             }
 
             .hero-text p {
@@ -891,12 +893,12 @@
                     
                       <!-- Images live INSIDE the same card -->
                       <div class="timeline-media">
-                        <figure class="media-frame">
+                        <figure class="media-frame is-portrait">
                           <!-- landscape -->
                           <img src="images/field-1.jpeg" alt="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
                         </figure>
                     
-                        <figure class="media-frame is-portrait">
+                        <figure class="media-frame">
                           <!-- portrait (can crop higher) -->
                           <img src="images/field-2.jpeg" alt="Fieldwork in the apiary with the Peleg Lab at CU">
                         </figure>
