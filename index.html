@@ -212,19 +212,40 @@
             border: 1px solid var(--border);
         }
 
-        .project-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: var(--sand);
+      .project-image {
+          width: 100%;
+          height: 200px;            /* keeps consistent card headers */
+          overflow: hidden;
+          background: var(--sand);
         }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        
+        /* Two-image collage: wide + narrow column */
+        .project-image--duo {
+          display: grid;
+          grid-template-columns: 2fr 1fr; /* landscape gets more space */
+          gap: 6px;
         }
-
+        
+        .project-image--duo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;        /* fill and crop cleanly */
+          object-position: center;
+          display: block;
+          border-radius: 6px;       /* subtle rounding inside the header */
+        }
+        
+        /* Make sure the main is “hero” and the portrait is the side strip */
+        .project-image--duo .main { grid-column: 1 / 2; }
+        .project-image--duo .side { grid-column: 2 / 3; }
+        
+        /* Mobile: stack into one row to avoid tiny side column */
+        @media (max-width: 520px) {
+          .project-image--duo {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        
         .project-content {
             padding: 2rem;
         }
@@ -620,7 +641,7 @@
     <nav>
         <div class="container">
             <div class="logo">
-              <img src="tabicon.ico" alt="" class="brand-mark">
+              <img src="files/tabicon.ico" alt="" class="brand-mark">
               <span>Carissa Mayo</span>
             </div>
             <ul>
@@ -689,20 +710,25 @@
                 <h3>🔍 Current Research</h3>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/research-1.jpeg" alt="Clam research">
+                      <div class="project-image project-image--duo">
+                        <!-- Main landscape (dominant) -->
+                        <img src="images/research-1.jpeg" alt="Fieldwork — landscape" class="main">
+                    
+                        <!-- Side portrait (can be cropped; just helps the ratio) -->
+                        <img src="images/research-2.jpeg" alt="Fieldwork — portrait" class="side">
+                      </div>
+                    
+                      <div class="project-content">
+                        <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
+                        <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
+                        <p>Master's thesis research developing a marine disease model to understand disease transmission dynamics in clam populations…</p>
+                        <div class="project-tags">
+                          <span class="tag">Bayesian Statistics</span>
+                          <span class="tag">R</span>
+                          <span class="tag">Disease Modeling</span>
+                          <span class="tag">Marine Ecology</span>
                         </div>
-                        <div class="project-content">
-                            <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
-                            <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
-                            <p>Master's thesis research developing a marine disease model to understand disease transmission dynamics in clam populations. Investigating temperature effects on disease progression using Bayesian inference methods.</p>
-                            <div class="project-tags">
-                                <span class="tag">Bayesian Statistics</span>
-                                <span class="tag">R</span>
-                                <span class="tag">Disease Modeling</span>
-                                <span class="tag">Marine Ecology</span>
-                            </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -858,10 +884,10 @@
 
                 <div class="timeline-media">
                     <figure class="media-frame">
-                      <img src="images/field-2.jpg" alt="Fieldwork in the apiary with the Peleg Lab at CU">
+                      <img src="images/field-2.jpeg" alt="Fieldwork in the apiary with the Peleg Lab at CU">
                     </figure>
                     <figure class="media-frame">
-                      <img src="images/field-1.jpg" alt="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
+                      <img src="images/field-1.jpeg" alt="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
                     </figure>
                 </div>
                 
