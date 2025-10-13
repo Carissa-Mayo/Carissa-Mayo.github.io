@@ -95,57 +95,45 @@ nav a:hover {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    margin-top: 80px;
-    background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
-    color: white;
-    padding: 4rem 2rem;
+  margin-top: 80px;
+  background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+  color: white;
+  padding: 4rem 2rem;
 }
 
 .hero-content {
-    max-width: 1230px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-    align-items: center;
+  max-width: 1230px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-image {
+  text-align: center;
 }
 
 .hero-image img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 .hero-text h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .hero-text p {
-    font-size: 1.15rem;
-    margin-bottom: 2rem;
-    line-height: 1.8;
-    opacity: 0.95;
-}
-
-/* Let the grid shrink properly */
-.hero-content { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
-.hero-text { min-width: 0; }
-
-/* One-line, auto-scaling title without clipping */
-.hero-text h1 {
-  white-space: nowrap;                 /* no wrapping */
-  font-size: clamp(1.2rem, 3.8vw, 2.6rem);  /* slightly smaller scaling */
-  line-height: 1.15;
-  /* remove overflow/text-overflow */
-}
-
-/* On very small screens, allow just a bit more shrink */
-@media (max-width: 520px) {
-  .hero-text h1 { font-size: clamp(1.1rem, 5.5vw, 1.8rem); }
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  opacity: 0.95;
 }
 
 /* ===== BUTTONS ===== */
