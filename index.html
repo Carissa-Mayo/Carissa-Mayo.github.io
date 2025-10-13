@@ -1,28 +1,744 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carissa Mayo - Quantitative Ecologist & Data Scientist</title>
     <link rel="icon" type="image/x-icon" href="tabicon.ico">
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --ocean-deep: #0a4d68;
+            --ocean-mid: #088395;
+            --ocean-light: #05bfdb;
+            --sand: #f8f9fa;
+            --cream: #fefefe;
+            --text-dark: #2c3e50;
+            --text-medium: #555;
+            --accent: #00a8cc;
+            --border: #e0e0e0;
+        }
+
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--sand);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--ocean-deep);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ocean-deep);
+        }
+
+        .brand-mark {
+            height: 26px;
+            width: 26px;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--ocean-mid);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 1230px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* ===== BUTTONS ===== */
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: var(--ocean-deep);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--sand);
+        }
+
+        .btn .icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--ocean-deep);
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .project-category {
+            margin-bottom: 4rem;
+        }
+
+        .project-category h3 {
+            font-size: 1.8rem;
+            color: var(--ocean-mid);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--cream);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Project Images */
+        .project-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: var(--sand);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Duo Image Layout */
+        .project-image--duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .duo-cell {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .duo-cell img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .duo-cell:first-child {
+            aspect-ratio: 5 / 3;
+        }
+
+        .duo-cell:first-child img {
+            object-fit: contain;
+        }
+
+        /* Project Content */
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-subtitle {
+            margin: -0.25rem 0 1rem;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .project-card h4 {
+            font-size: 1.3rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .project-card h4 .lucide {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+            color: var(--ocean-mid);
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--ocean-light);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .project-citation {
+            margin: 1rem 0 0;
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--ocean-mid);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            color: var(--ocean-deep);
+        }
+
+        /* Project Footer Actions */
+        .project-actions {
+            margin-top: auto;
+            padding: 0.75rem 1.25rem 1rem;
+            border-top: 1px solid var(--border);
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .project-actions .project-link {
+            margin-top: 0;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            transition: all 0.15s ease;
+        }
+
+        .project-actions .project-link:hover {
+            background: #fff;
+            transform: translateX(2px);
+        }
+
+        .project-actions .project-link .lucide {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--ocean-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--ocean-mid);
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--ocean-light);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.4rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-item h4 .lucide {
+            width: 24px;
+            height: 24px;
+            color: var(--ocean-mid);
+            flex-shrink: 0;
+        }
+
+        .timeline-item .role {
+            color: var(--ocean-mid);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .field-content-wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .timeline-media {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .media-frame {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--sand);
+            aspect-ratio: 4/3;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .media-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 131, 149, 0.9), rgba(8, 131, 149, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.75rem;
+            color: white;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .media-frame:hover .media-overlay {
+            opacity: 1;
+        }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education-item {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .education-item h3 {
+            color: var(--ocean-deep);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .education-item h3 .lucide {
+            width: 24px;
+            height: 24px;
+            color: var(--ocean-mid);
+            flex-shrink: 0;
+        }
+
+        .education-item .institution {
+            color: var(--ocean-mid);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .education-item .details {
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .leadership-note {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        /* ===== PRESENTATIONS SECTION ===== */
+        .achievements-presentation {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: stretch;
+        }
+
+        .presentation-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .presentation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .achievement-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .achievement-card .section {
+            margin-bottom: 2rem;
+        }
+
+        .achievement-card .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.3rem;
+            color: var(--ocean-mid);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .achievement-card h3 .lucide {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .achievement-card p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* ===== PERSONAL SECTION ===== */
+        .personal-content-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .personal-main-image {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .personal-main-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .personal-intro p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        .photo-collage {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .collage-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .collage-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ocean-deep);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer .contact-buttons {
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        footer .btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        footer .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer .btn .icon {
+            fill: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .achievements-presentation {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            nav a span {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .contact-buttons {
+                justify-content: center;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+            }
+
+            .field-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .personal-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-collage {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .duo-cell {
+                aspect-ratio: 3/2;
+            }
+
+            .project-actions {
+                padding: 0.5rem 0.75rem 0.75rem;
+            }
+
+            .project-actions .project-link {
+                padding: 0.4rem 0.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
         <div class="container">
             <div class="logo">
-              <img src="files/tabicon.ico" alt="" class="brand-mark">
-              <span>Carissa Mayo</span>
+                <img src="files/tabicon.ico" alt="" class="brand-mark">
+                <span>Carissa Mayo</span>
             </div>
             <ul>
-                <li><a href="#about"> <span>About</span></a></li>
-                <li><a href="#projects"> <span>Projects</span></a></li>
-                <li><a href="#experience"> <span>Experience</span></a></li>
-                <li><a href="#education"> <span>Education</span></a></li>
-                <li><a href="#achievements"> <span>Presentations</span></a></li>
-                <li><a href="#personal"> <span>Personal</span></a></li>
+                <li><a href="#about"><span>About</span></a></li>
+                <li><a href="#projects"><span>Projects</span></a></li>
+                <li><a href="#experience"><span>Experience</span></a></li>
+                <li><a href="#education"><span>Education</span></a></li>
+                <li><a href="#achievements"><span>Presentations</span></a></li>
+                <li><a href="#personal"><span>Personal</span></a></li>
             </ul>
         </div>
     </nav>
@@ -36,14 +752,14 @@
                 <h1>Quantitative Ecologist & Data Scientist</h1>
                 <p>I am an applied scientist passionate about utilizing statistical and computational modeling to bridge the gap between data and real-world impact. 
                     I am currently completing my M.S. in Quantitative Ecology and Resource Management at the University of Washington, where I model disease transmission in 
-                    clam populations using Bayesian methods. My background in statistics and data science from the University of Coloraado provides the quantitative foundation for my work in 
+                    clam populations using Bayesian methods. My background in statistics and data science from the University of Colorado provides the quantitative foundation for my work in 
                     statistical methods, computer science, and data analytics.</p>
                 <div class="contact-buttons">
                     <a href="files/resume.pdf" class="btn">
                         <svg class="icon" viewBox="0 0 24 24">
                             <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
                         </svg>
-                       View Resume
+                        View Resume
                     </a>
                     <a href="mailto:carissasmayo@gmail.com" class="btn">
                         <svg class="icon" viewBox="0 0 24 24">
@@ -76,54 +792,53 @@
     
     <section id="projects">
         <div class="container">
-            <h2> Projects</h2>
+            <h2>Projects</h2>
             
             <div class="project-category">
-                <h3>🔍 Current Research</h3>
+                <h3>Current Research</h3>
                 <div class="projects-grid">
                     <div class="project-card">
-                    <div class="project-image--duo">
-                      <div class="duo-cell">
-                        <img src="images/research-1.jpeg" alt="">
-                      </div>
-                      <div class="duo-cell">
-                        <img src="images/research-2.jpeg" alt="">
-                      </div>
-                    </div>
-                                        
-                      <div class="project-content">
-                        <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
-                        <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
-                        <p>Master's thesis research developing a marine disease model to understand disease transmission dynamics in clam populations…</p>
-                        <div class="project-tags">
-                          <span class="tag">Bayesian Statistics</span>
-                          <span class="tag">R</span>
-                          <span class="tag">Disease Modeling</span>
-                          <span class="tag">Marine Ecology</span>
+                        <div class="project-image--duo">
+                            <div class="duo-cell">
+                                <img src="images/research-1.jpeg" alt="Research clam sample">
+                            </div>
+                            <div class="duo-cell">
+                                <img src="images/research-2.jpeg" alt="Lab work">
+                            </div>
                         </div>
-                      </div>
+                        <div class="project-content">
+                            <h4>Bayesian Modeling of Transmissible Cancer in Soft-Shell Clams</h4>
+                            <p class="project-subtitle"><em>Metzger Lab, Pacific Northwest Research Institute</em></p>
+                            <p>Master's thesis research developing a marine disease model to understand disease transmission dynamics in clam populations using Bayesian statistical methods and ecological modeling frameworks.</p>
+                            <div class="project-tags">
+                                <span class="tag">Bayesian Statistics</span>
+                                <span class="tag">R</span>
+                                <span class="tag">Disease Modeling</span>
+                                <span class="tag">Marine Ecology</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="project-category">
-                <h3>📄 Publications</h3>
+                <h3>Publications</h3>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/pub-clams.jpeg" alt="Time series analysis">
+                            <img src="images/pub-clams.jpeg" alt="Clam research publication">
                         </div>
                         <div class="project-content">
-                            <h4>Variation in natural infection outcomes and cancer cell release from soft-shell clams (Mya arenaria) with bivalve transmissible neoplasia (2025) </h4>
-                            <p> Identified and described stages of disease through changepoint and regression analyses in the Metzger Lab.</p>
+                            <h4>Variation in natural infection outcomes and cancer cell release from soft-shell clams (Mya arenaria) with bivalve transmissible neoplasia (2025)</h4>
+                            <p>Identified and described stages of disease through changepoint and regression analyses in the Metzger Lab.</p>
                             <div class="project-tags">
                                 <span class="tag">Statistical Inference</span>
                                 <span class="tag">R</span>
                             </div>
-                             <div class="project-citation">
+                            <div class="project-citation">
                                 <cite>
                                     Giersch, R., Sevigny, J., Weinandt, S., <strong>Mayo, C.</strong>, et al. Variation in Natural Infection Outcomes and Cancer Cell Release from Soft-Shell 
-                                    Clams (Mya arenaria) with Bivalve Transmissible Neoplasia. <em> PLoS Pathog </em>  <span>21(9).(2025)</span>
+                                    Clams (Mya arenaria) with Bivalve Transmissible Neoplasia. <em>PLoS Pathog</em> <span>21(9).(2025)</span>
                                 </cite>
                             </div>
                             <a href="https://doi.org/10.1371/journal.ppat.1013537" class="project-link">Read Publication</a>
@@ -132,10 +847,10 @@
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/pub-bees.jpeg" alt="Time series analysis">
+                            <img src="images/pub-bees.jpeg" alt="Bee research publication">
                         </div>
                         <div class="project-content">
-                            <h4> A computational topology-based spatiotemporal analysis technique for honeybee aggregation (2024) </h4>
+                            <h4>A computational topology-based spatiotemporal analysis technique for honeybee aggregation (2024)</h4>
                             <p>Developed changepoint detection methods for ecological time series data in the Peleg Lab. Contributed to field and laboratory experiments, with findings published in peer-reviewed literature.</p>
                             <div class="project-tags">
                                 <span class="tag">Time Series Analysis</span>
@@ -144,9 +859,9 @@
                             </div>
                             <div class="project-citation">
                                 <cite>
-                                  Gharooni-Fard, G., Byers, M., Deshmukh, V., Bradley, E., <strong>Mayo, C.</strong>, Topaz, C., Peleg, O.
-                                  "A computational topology-based spatiotemporal analysis technique for honeybee aggregation."
-                                  <em>npj Complex</em> <span>1, 3 (2024)</span>.
+                                    Gharooni-Fard, G., Byers, M., Deshmukh, V., Bradley, E., <strong>Mayo, C.</strong>, Topaz, C., Peleg, O.
+                                    "A computational topology-based spatiotemporal analysis technique for honeybee aggregation."
+                                    <em>npj Complex</em> <span>1, 3 (2024)</span>.
                                 </cite>
                             </div>
                             <a href="https://doi.org/10.1038/s44260-024-00003-1" class="project-link">Read Publication</a>
@@ -156,21 +871,23 @@
             </div>
 
             <div class="project-category">
-                <h3>📚 Academic Projects</h3>
+                <h3>Academic Projects</h3>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
                             <img src="project-abm.jpg" alt="Agent-based model">
                         </div>
                         <div class="project-content">
-                            <h4>👥 Agent-Based Modeling of Population Dynamics</h4>
+                            <h4>
+                                <i data-lucide="users"></i>
+                                <span>Agent-Based Modeling of Population Dynamics</span>
+                            </h4>
                             <p>Simulated complex ecological interactions using agent-based models to understand emergent population patterns and species coexistence mechanisms.</p>
                             <div class="project-tags">
                                 <span class="tag">NetLogo</span>
                                 <span class="tag">R</span>
                                 <span class="tag">ABM</span>
                             </div>
-                            <a href="#" class="project-link">📊 View Analysis</a>
                         </div>
                     </div>
 
@@ -179,14 +896,16 @@
                             <img src="project-salmon.jpg" alt="Salmon research">
                         </div>
                         <div class="project-content">
-                            <h4>🐟 Environmental Drivers of Salmon Survival</h4>
+                            <h4>
+                                <i data-lucide="fish"></i>
+                                <span>Environmental Drivers of Salmon Survival</span>
+                            </h4>
                             <p>Statistical modeling project analyzing relationships between environmental variables and salmon survival rates using generalized linear models and time series methods.</p>
                             <div class="project-tags">
                                 <span class="tag">Statistical Modeling</span>
                                 <span class="tag">R</span>
                                 <span class="tag">GLM</span>
                             </div>
-                            <a href="#" class="project-link">📊 View Analysis</a>
                         </div>
                     </div>
 
@@ -195,15 +914,25 @@
                             <img src="project-optimization.jpg" alt="Optimization">
                         </div>
                         <div class="project-content">
-                            <h4>⚙️ Optimization for Resource Allocation</h4>
+                            <h4>
+                                <i data-lucide="settings"></i>
+                                <span>Optimization for Resource Allocation</span>
+                            </h4>
                             <p>Applied optimization techniques to solve resource allocation problems in environmental management contexts using linear and nonlinear programming.</p>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
                                 <span class="tag">Optimization</span>
                                 <span class="tag">Applied Math</span>
                             </div>
-                            <a href="https://github.com/Carissa-Mayo/network-migration-project.git" class="project-link"> View Project</a>
-                            <i data-lucide="arrow-right"></i>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/Carissa-Mayo/network-migration-project.git" class="project-link" target="_blank" rel="noopener">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                </svg>
+                                <span>View Project</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -211,41 +940,28 @@
                         <div class="project-image">
                             <img src="images/project-networks-1.jpeg" alt="Network analysis">
                         </div>
-
                         <div class="project-content">
                             <h4>
-                              <i data-lucide="vector-square" class="icon-title" aria-hidden="true"></i>
-                              Network Analysis of Ecological Systems
+                                <i data-lucide="network"></i>
+                                <span>Network Analysis of Ecological Systems</span>
                             </h4>
                             <p>Analyzed ecological interaction networks using graph theory and network metrics to understand community structure and stability.</p>
-                        
                             <div class="project-tags">
-                              <span class="tag">Python</span>
-                              <span class="tag">MatLab</span>
-                              <span class="tag">Big Data</span>
-                              <span class="tag">Network Analysis</span>
-                              <span class="tag">Graph Theory</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">MatLab</span>
+                                <span class="tag">Big Data</span>
+                                <span class="tag">Network Analysis</span>
+                                <span class="tag">Graph Theory</span>
                             </div>
-                          </div>
-                        
-                          <!-- footer row, right-aligned -->
-                          <div class="project-actions project-actions--right">
-                            <a href="https://github.com/Carissa-Mayo/network-migration-project"
-                               class="project-link" target="_blank" rel="noopener">
-                               <svg class="icon" viewBox="0 0 24 24">
-                                   <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
-                               </svg>
-                              <span>View Project</span>
-                              <i data-lucide="arrow-right" class="icon-arrow" aria-hidden="true"></i>
-                            </a>
-                          </div>
                         </div>
-
-                        <script>
-                          document.addEventListener('DOMContentLoaded', () => {
-                            if (window.lucide) lucide.createIcons();
-                          });
-                        </script>
+                        <div class="project-actions">
+                            <a href="https://github.com/Carissa-Mayo/network-migration-project" class="project-link" target="_blank" rel="noopener">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                </svg>
+                                <span>View Project</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -254,7 +970,10 @@
                             <img src="project-ml.jpg" alt="Machine learning">
                         </div>
                         <div class="project-content">
-                            <h4>🤖 Machine Learning Workshop Project</h4>
+                            <h4>
+                                <i data-lucide="brain"></i>
+                                <span>Machine Learning Workshop Project</span>
+                            </h4>
                             <p>Developed predictive models for ecological outcomes using machine learning techniques including random forests and gradient boosting.</p>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
@@ -273,127 +992,154 @@
             <h2>Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h4>👥 LISA Collaborative Training</h4>
+                    <h4>
+                        <i data-lucide="users"></i>
+                        <span>LISA Collaborative Training</span>
+                    </h4>
                     <div class="role">University of Colorado Boulder</div>
                     <p>Completed training in statistical consulting and interdisciplinary data analysis at the Laboratory for Interdisciplinary Statistical Analysis. Collaborated with researchers from diverse fields to provide statistical guidance and analytical support.</p>
                 </div>
 
-                 <div class="timeline-item">
-                      <h4>🔬 Field Research Experience</h4>
-                      <div class="role">Various Projects</div>
-                      
-                      <div class="field-content-wrapper">
+                <div class="timeline-item">
+                    <h4>
+                        <i data-lucide="microscope"></i>
+                        <span>Field Research Experience</span>
+                    </h4>
+                    <div class="role">Various Projects</div>
+                    
+                    <div class="field-content-wrapper">
                         <div class="field-text">
-                          <p>
-                            Conducted lab and field sampling in marine and terrestrial systems across multiple
-                            research studies and institutes including the BioFrontiers Institute and the
-                            Pacific Northwest Research Institute. Gained hands-on experience in ecological
-                            data collection, species identification, and field methodology.
-                          </p>
+                            <p>
+                                Conducted lab and field sampling in marine and terrestrial systems across multiple
+                                research studies and institutes including the BioFrontiers Institute and the
+                                Pacific Northwest Research Institute. Gained hands-on experience in ecological
+                                data collection, species identification, and field methodology.
+                            </p>
                         </div>
                         
                         <div class="timeline-media">
-                          <figure class="media-frame focus-center" title="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
-                            <img src="images/field-1.jpeg" alt="Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab">
-                          </figure>
-                      
-                          <figure class="media-frame focus-center" title="Fieldwork in the apiary with the Peleg Lab at CU">
-                            <img src="images/field-2.jpeg" alt="Fieldwork in the apiary with the Peleg Lab at CU">
-                          </figure>
+                            <figure class="media-frame">
+                                <img src="images/field-1.jpeg" alt="Midnight fieldwork collecting clams">
+                                <div class="media-overlay">Midnight fieldwork at Penn Cove collecting clams with the Metzger Lab</div>
+                            </figure>
+                        
+                            <figure class="media-frame">
+                                <img src="images/field-2.jpeg" alt="Fieldwork in apiary">
+                                <div class="media-overlay">Fieldwork in the apiary with the Peleg Lab at CU</div>
+                            </figure>
                         </div>
-                      </div>
+                    </div>
                 </div>
                 
                 <div class="timeline-item">
-                    <h4>📊 Data Science Intern</h4>
+                    <h4>
+                        <i data-lucide="bar-chart"></i>
+                        <span>Data Science Intern</span>
+                    </h4>
                     <div class="role">Environment for the Americas</div>
-                    <p> Provided data analysis, as well as scientific writing expertise, to a nonprofit environmental organization. Created data reports to present insights clearly in a storytelling manner using MS Suite.</p>
+                    <p>Provided data analysis, as well as scientific writing expertise, to a nonprofit environmental organization. Created data reports to present insights clearly in a storytelling manner using MS Suite.</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="achievements">
-      <div class="container">
-        <h2>Presentations & Awards</h2>
-    
-        <div class="achievements-presentation">
-          <div class="presentation-image">
-            <img src="images/poster-pres.jpeg" alt="Poster presentation">
-          </div>
-    
-          <div class="achievement-card">
-            <div class="section">
-              <h3>📢 Presentations</h3>
-              <p><strong>A Bayesian Framework to Model Transmissible Cancer Dynamics within Soft-Shell Clam (Maya arenaria) Populations</strong></p>
-              <p>Ecology and Evolution of Infectious Diseases (EEID) Conference, 2025</p>
-              <p>Society for Mathematical Biology (SMB) Conference, 2025</p>
-              <a href="files/poster.pdf" class="project-link">View Poster</a>
-            </div>
-    
-            <div class="section">
-              <h3>✈️ Travel Awards</h3>
-              <p><strong>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
-              <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section id="education">
         <div class="container">
-            <h2> Education</h2>
+            <h2>Education</h2>
             
             <div class="education-item">
-                <h3> M.S. Quantitative Ecology & Resource Management</h3>
+                <h3>
+                    <i data-lucide="graduation-cap"></i>
+                    <span>M.S. Quantitative Ecology & Resource Management</span>
+                </h3>
                 <div class="institution">University of Washington (Expected 2026)</div>
                 <div class="details">Focus: Bayesian disease modeling in marine systems. Thesis research on transmissible cancer dynamics in soft-shell clam populations.</div>
             </div>
 
             <div class="education-item">
-                <h3> B.S. Statistics & Data Science</h3>
+                <h3>
+                    <i data-lucide="graduation-cap"></i>
+                    <span>B.S. Statistics & Data Science</span>
+                </h3>
                 <div class="institution">University of Colorado Boulder (2023)</div>
                 <div class="details">Minors: Computer Science & Computational Biology. Graduated #1 in major with comprehensive training in statistical theory, computational methods, and data science applications.</div>
+                <div class="leadership-note"><strong>Leadership:</strong> Served on the executive team for the Computing, Computational & Applied Mathematics Community (COCO), contributing to community building and academic programming for students in computational fields.</div>
             </div>
         </div>
     </section>
 
-<section id="personal">
-    <div class="container">
-        <h2>Beyond Research</h2>
-        
-        <div class="personal-content-wrapper">
-            <div class="personal-main-image">
-                <img src="images/personal-1.jpeg" alt="Outdoor activity">
-            </div>
-            
-            <div class="personal-intro">
-                <p>Outside of research, you'll find me exploring the Pacific Northwest outdoors or traveling. I am passionate about hiking, skiing, scuba diving, 
-                    capturing the beauty of coastal landscapes through photography, and spending time on the water. These experiences fuel my curiosity about the 
-                    natural world and remind me why conservation matters.</p>
+    <section id="achievements">
+        <div class="container">
+            <h2>Presentations & Awards</h2>
+    
+            <div class="achievements-presentation">
+                <div class="presentation-image">
+                    <img src="images/poster-pres.jpeg" alt="Poster presentation">
+                </div>
+    
+                <div class="achievement-card">
+                    <div class="section">
+                        <h3>
+                            <i data-lucide="presentation"></i>
+                            <span>Presentations</span>
+                        </h3>
+                        <p><strong>A Bayesian Framework to Model Transmissible Cancer Dynamics within Soft-Shell Clam (Maya arenaria) Populations</strong></p>
+                        <p>Ecology and Evolution of Infectious Diseases (EEID) Conference, 2025</p>
+                        <p>Society for Mathematical Biology (SMB) Conference, 2025</p>
+                        <a href="files/poster.pdf" class="project-link">View Poster</a>
+                    </div>
+    
+                    <div class="section">
+                        <h3>
+                            <i data-lucide="plane"></i>
+                            <span>Travel Awards</span>
+                        </h3>
+                        <p><strong>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
+                        <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
+                    </div>
+                </div>>NSF-funded EEID Pre-Conference Workshop on AI:</strong> $1,500 (2025)</p>
+                        <p><strong>STANCON Scholarship:</strong> $1,000 (2024)</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="photo-collage">
-            <div class="collage-item">
-                <img src="images/personal-2.jpeg" alt="Outdoor activity">
+    <section id="personal">
+        <div class="container">
+            <h2>Beyond Research</h2>
+            
+            <div class="personal-content-wrapper">
+                <div class="personal-main-image">
+                    <img src="images/personal-1.jpeg" alt="Outdoor activity">
+                </div>
+                
+                <div class="personal-intro">
+                    <p>Outside of research, you'll find me exploring the Pacific Northwest outdoors or traveling. I am passionate about hiking, skiing, scuba diving, 
+                        capturing the beauty of coastal landscapes through photography, and spending time on the water. These experiences fuel my curiosity about the 
+                        natural world and remind me why conservation matters.</p>
+                </div>
             </div>
-            <div class="collage-item">
-                <img src="images/personal-3.jpeg" alt="Outdoor activity">
-            </div>
-            <div class="collage-item">
-                <img src="images/personal-4.jpeg" alt="Outdoor activity">
-            </div>
-            <div class="collage-item">
-                <img src="images/personal-5.jpeg" alt="Outdoor activity">
-            </div>
-            <div class="collage-item">
-                <img src="images/personal-6.jpeg" alt="Outdoor activity">
+
+            <div class="photo-collage">
+                <div class="collage-item">
+                    <img src="images/personal-2.jpeg" alt="Outdoor activity">
+                </div>
+                <div class="collage-item">
+                    <img src="images/personal-3.jpeg" alt="Outdoor activity">
+                </div>
+                <div class="collage-item">
+                    <img src="images/personal-4.jpeg" alt="Outdoor activity">
+                </div>
+                <div class="collage-item">
+                    <img src="images/personal-5.jpeg" alt="Outdoor activity">
+                </div>
+                <div class="collage-item">
+                    <img src="images/personal-6.jpeg" alt="Outdoor activity">
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <div class="container">
@@ -421,7 +1167,18 @@
         </div>
     </footer>
 
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -435,6 +1192,7 @@
             });
         });
 
+        // Active nav link on scroll
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
