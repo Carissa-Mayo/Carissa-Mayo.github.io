@@ -289,7 +289,6 @@ nav a:hover {
   align-items: center;     /* icon centered with text */
   gap: 0.6rem;
   flex-wrap: nowrap;       /* keep icon + text on one line */
-  white-space: nowrap;     /* no wrapping */
   overflow: hidden;        /* avoid overflow */
   text-overflow: ellipsis; /* if too long, fade with … */
   line-height: 1.3;
