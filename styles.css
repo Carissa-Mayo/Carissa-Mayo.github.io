@@ -131,6 +131,26 @@ nav a:hover {
     opacity: 0.95;
 }
 
+/* Let the grid columns shrink properly so the H1 can fit */
+.hero-content {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+}
+
+.hero-text { min-width: 0; }       /* allow the text column to shrink */
+
+/* Force one line and scale the font down with viewport width */
+.hero-text h1 {
+  white-space: nowrap;              /* never wrap */
+  overflow: hidden;                 /* prevent overflow */
+  text-overflow: clip;              /* no ellipsis; we’ll fit instead */
+  font-size: clamp(1.4rem, 4.2vw, 2.8rem);
+}
+
+/* On very small screens, tighten a bit more so it still fits on one line */
+@media (max-width: 520px) {
+  .hero-text h1 { font-size: clamp(1.2rem, 6vw, 1.8rem); }
+}
+
 /* ===== BUTTONS ===== */
 .contact-buttons {
     display: flex;
