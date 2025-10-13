@@ -131,24 +131,21 @@ nav a:hover {
     opacity: 0.95;
 }
 
-/* Let the grid columns shrink properly so the H1 can fit */
-.hero-content {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-}
+/* Let the grid shrink properly */
+.hero-content { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.hero-text { min-width: 0; }
 
-.hero-text { min-width: 0; }       /* allow the text column to shrink */
-
-/* Force one line and scale the font down with viewport width */
+/* One-line, auto-scaling title without clipping */
 .hero-text h1 {
-  white-space: nowrap;              /* never wrap */
-  overflow: hidden;                 /* prevent overflow */
-  text-overflow: clip;              /* no ellipsis; we’ll fit instead */
-  font-size: clamp(1.4rem, 4.2vw, 2.8rem);
+  white-space: nowrap;                 /* no wrapping */
+  font-size: clamp(1.2rem, 3.8vw, 2.6rem);  /* slightly smaller scaling */
+  line-height: 1.15;
+  /* remove overflow/text-overflow */
 }
 
-/* On very small screens, tighten a bit more so it still fits on one line */
+/* On very small screens, allow just a bit more shrink */
 @media (max-width: 520px) {
-  .hero-text h1 { font-size: clamp(1.2rem, 6vw, 1.8rem); }
+  .hero-text h1 { font-size: clamp(1.1rem, 5.5vw, 1.8rem); }
 }
 
 /* ===== BUTTONS ===== */
@@ -299,25 +296,25 @@ nav a:hover {
     line-height: 1.7;
 }
 
-/* --- Keep title on one line + center icons vertically --- */
 .project-card .project-content h4 {
   display: flex;
-  align-items: center;       /* center icon with text */
+  align-items: center;     /* icon centered with text */
   gap: 0.6rem;
-  white-space: normal;
-  flex-wrap: wrap;
-  line-height: 1.3;          /* tidy vertical rhythm */
+  flex-wrap: nowrap;       /* keep icon + text on one line */
+  white-space: nowrap;     /* no wrapping */
+  overflow: hidden;        /* avoid overflow */
+  text-overflow: ellipsis; /* if too long, fade with … */
+  line-height: 1.3;
 }
 
-/* --- Make icons a bit larger and stop them from shrinking --- */
+/* Icon same size as text and not squished */
 .project-card .project-content h4 .lucide {
   width: 1em;
   height: 1em;
   flex: 0 0 auto;
-  margin-top: 0;             /* override earlier 0.1rem nudge */
-  stroke-width: 1.75;
-  margin-top: 0;
+  color: var(--ocean-mid);
 }
+
 
 .project-tags {
     display: flex;
