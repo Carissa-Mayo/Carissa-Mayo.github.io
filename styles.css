@@ -106,7 +106,7 @@ nav a:hover {
   max-width: 1230px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-template-areas: "image text";
   column-gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
@@ -716,6 +716,7 @@ footer .btn .icon {
   .hero-text h1 {
     white-space: normal;         /* now it can wrap */
     text-wrap: balance;          /* nicer 2-line split in modern browsers */
+    overflow-wrap: anywhere;
   }
   .hero-content {
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);  /* favor text */
