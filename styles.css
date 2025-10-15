@@ -126,6 +126,9 @@ nav a:hover {
 
 .hero-text h1 {
   white-space: nowrap;                 /* keep to one line */
+  overflow-wrap: anywhere;              /* break long words/URLs if needed */
+  word-break: normal;
+  hyphens: auto;
   line-height: 1.12;
   margin-bottom: 1rem;
   font-size: clamp(1.1rem, 4.6vw, 2.8rem); /* auto-scale with viewport */
