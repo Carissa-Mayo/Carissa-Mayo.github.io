@@ -131,7 +131,7 @@ nav a:hover {
   hyphens: auto;
   line-height: 1.12;
   margin-bottom: 1rem;
-  font-size: clamp(1.1rem, 4.6vw, 2.8rem); /* auto-scale with viewport */
+  font-size: clamp(1.6rem, 4.2vw, 2.8rem); /* auto-scale with viewport */
 }
 
 .hero-text p {
@@ -694,7 +694,7 @@ footer .btn .icon {
   nav a span { display: none; }
 
   .hero { padding: 3rem 1.25rem; } /* tighter on phones */
-  .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .hero-content { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); text-align: center; gap: 21.5rem; }
 
   /* DO NOT set a fixed h1 size here; clamp above will handle it */
   .hero-text p { font-size: 1rem; }
@@ -705,6 +705,15 @@ footer .btn .icon {
   .timeline-item { margin-left: 1rem; }
 
   .field-content-wrapper { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 980px) {
+  .hero-text h1 {
+    white-space: normal;        /* now it can wrap */
+    text-wrap: balance;         /* nicer two-line split (supported in modern browsers) */
+    word-break; normal;
+    font-size: clamp(1.4rem, 5vw, 2.4rem); /* small nudge down if needed */
+  }
 }
 
 @media (max-width: 600px) {
