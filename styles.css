@@ -107,7 +107,7 @@ nav a:hover {
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  grid-template-areas: "text image";
+  grid-template-areas: "image text";
   column-gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
 }
