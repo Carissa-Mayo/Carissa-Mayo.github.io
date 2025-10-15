@@ -142,7 +142,7 @@ nav a:hover {
   hyphens: auto;
   line-height: 1.12;
   margin-bottom: 1rem;
-  font-size: clamp(1.6rem, 4.2vw, 2.8rem);
+  font-size: clamp(1.5rem, 3.8vw, 2.6rem);
 }
 
 .hero-text p {
@@ -749,7 +749,7 @@ footer .btn .icon {
     white-space; normal;
     text-wrap: balance;
     overflow-wra: anywhere;
-    font-size: clamp(1.5rem, 6vw, 2.4rem);
+    font-size: clamp(1.4rem, 6vw, 2.4rem);
   }
 
   .hero-text p { font-size: 1rem; }
