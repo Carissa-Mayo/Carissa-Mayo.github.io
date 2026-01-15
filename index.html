@@ -155,6 +155,54 @@
             <div class="project-category">
                 <h3><i data-lucide="folders"></i> <span>Academic/Personal Projects</span> </h3>
                 <div class="projects-grid">
+                    <!-- Shiny App Project Card -->
+                    <div class="project-card">
+                      <div class="project-image">
+                        <img src="images/projects-pickleball.png" alt="Pickleball League Organizer Shiny App screenshot" loading="lazy">
+                      </div>
+                    
+                      <div class="project-content">
+                        <h4>
+                          <i data-lucide="layout-dashboard"></i>
+                          <span>Pickleball League Organizer (Shiny App)</span>
+                        </h4>
+                    
+                        <p>
+                          Web app that schedules weekly pods, tracks rotating-partner points, and supports uploading/downloading
+                          schedule and results for league continuity.
+                        </p>
+                    
+                        <div class="project-tags">
+                          <span class="tag">R</span>
+                          <span class="tag">Shiny</span>
+                          <span class="tag">Scheduling</span>
+                          <span class="tag">Fairness</span>
+                        </div>
+                      </div>
+                    
+                      <div class="project-actions">
+                        <!-- LIVE APP -->
+                        <a class="project-link" href="https://YOURNAME.shinyapps.io/YOURAPP/" target="_blank" rel="noopener">
+                          <i data-lucide="external-link"></i>
+                          <span>Live App</span>
+                        </a>
+                    
+                        <!-- SOURCE CODE -->
+                        <a class="project-link" href="https://github.com/Carissa-Mayo/pickleball-app" target="_blank" rel="noopener">
+                          <i data-lucide="github"></i>
+                          <span>Source</span>
+                        </a>
+                    
+                        <!-- OPTIONAL: EMBED PREVIEW BUTTON (requires the modal CSS + JS below) -->
+                        <button class="project-link project-link--button"
+                                type="button"
+                                data-shiny-preview="https://carissa-mayo.shinyapps.io/pickleball_app/">
+                          <i data-lucide="play"></i>
+                          <span>Preview</span>
+                        </button>
+                      </div>
+                    </div>
+
                     <div class="project-card">
                         <div class="project-image">
                             <img src="images/sql_ss.jpeg" alt="sql DB">
@@ -543,6 +591,75 @@
                 }
             });
         });
+        //  Shiny modal preview
+        (() => {
+          const modal = document.getElementById('shinyModal');
+          const frame = document.getElementById('shinyModalFrame');
+          const openNewTab = document.getElementById('shinyModalOpenNewTab');
+        
+          if (!modal || !frame || !openNewTab) return;
+        
+          const openModal = (url) => {
+            frame.src = url;
+            openNewTab.href = url;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        
+            // Re-render lucide icons inside modal (since we inject markup already present)
+            if (window.lucide) lucide.createIcons();
+          };
+        
+          const closeModal = () => {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            frame.src = '';
+          };
+        
+          document.addEventListener('click', ( reopeningEvent ) => {
+            const previewBtn = reopeningEvent.target.closest('[data-shiny-preview]');
+            if (previewBtn) {
+              const url = previewBtn.getAttribute('data-shiny-preview');
+              if (url) openModal(url);
+            }
+            if (reopeningEvent.target.closest('[data-shiny-close]')) {
+              closeModal();
+            }
+          });
+        
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+              closeModal();
+            }
+          });
+        })();
+
     </script>
+    <!-- Shiny Preview Modal -->
+    <div class="shiny-modal" id="shinyModal" aria-hidden="true">
+      <div class="shiny-modal__backdrop" data-shiny-close></div>
+    
+      <div class="shiny-modal__panel" role="dialog" aria-modal="true" aria-labelledby="shinyModalTitle">
+        <div class="shiny-modal__bar">
+          <p class="shiny-modal__title" id="shinyModalTitle">
+            <i data-lucide="layout-dashboard"></i>
+            <span>App Preview</span>
+          </p>
+    
+          <div class="shiny-modal__actions">
+            <a class="shiny-modal__btn" id="shinyModalOpenNewTab" href="#" target="_blank" rel="noopener">
+              <i data-lucide="external-link"></i><span>Open</span>
+            </a>
+            <button class="shiny-modal__btn" type="button" data-shiny-close>
+              <i data-lucide="x"></i><span>Close</span>
+            </button>
+          </div>
+        </div>
+    
+        <iframe class="shiny-modal__frame" id="shinyModalFrame" title="Shiny App Preview"></iframe>
+      </div>
+    </div>
+
 </body>
 </html>
