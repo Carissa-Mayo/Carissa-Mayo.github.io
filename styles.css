@@ -763,3 +763,86 @@ footer .btn .icon {
   .project-actions { padding: 0.5rem 0.75rem 0.75rem; }
   .project-actions .project-link { padding: 0.4rem 0.6rem; }
 }
+
+/* Make <button> look like your .project-link pills */
+.project-actions .project-link.project-link--button {
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ===== Shiny Preview Modal ===== */
+.shiny-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+.shiny-modal.is-open { display: block; }
+
+.shiny-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.shiny-modal__panel {
+  position: absolute;
+  inset: 5vh 5vw;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.shiny-modal__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(8, 131, 149, 0.08); /* ocean-mid tint */
+  border-bottom: 1px solid var(--border);
+}
+
+.shiny-modal__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  font-size: 14px;
+}
+
+.shiny-modal__actions {
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.shiny-modal__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--ocean-mid);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.shiny-modal__btn:hover { color: var(--ocean-deep); }
+
+.shiny-modal__frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
