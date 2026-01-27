@@ -16,6 +16,7 @@
 
   <link rel="icon" type="image/x-icon" href="tabicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="neural.png" />
+
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="styles.css" />
 
@@ -26,7 +27,11 @@
     }
 
     .page-header {
-      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
     }
 
     .page-header h1 {
@@ -36,58 +41,33 @@
     .page-subtitle {
       margin: 10px 0 0 0;
       opacity: 0.9;
-      max-width: 950px;
+      max-width: 900px;
     }
 
-    .subtabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      margin-bottom: 18px;
-    }
-
-    .subtab {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      text-decoration: none;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: rgba(255,255,255,0.7);
-    }
-
-    .embed-wrap {
-      position: relative;
+    .dashboard-wrap {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 56.25%;
-      border-radius: 16px;
-      overflow: hidden;
+      border-radius: 14px;
+      overflow: hidden; /* keeps iframe corners clean */
       background: #f3f4f6;
     }
 
-    .embed-wrap iframe {
-      position: absolute;
-      inset: 0;
+    .embed-iframe {
+      display: block;
       width: 100%;
-      height: 100%;
       border: 0;
+      height: 86vh;      /* big and readable */
+      min-height: 720px; /* avoids tiny embeds */
     }
 
-    @media (max-width: 900px) {
-      .embed-wrap {
-        max-width: 100%;
-        padding-top: 68%;
+    @media (max-width: 700px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
-    }
 
-    @media (max-width: 600px) {
-      .embed-wrap {
-        padding-top: 85%;
-        border-radius: 12px;
+      .embed-iframe {
+        height: 82vh;
+        min-height: 620px;
       }
     }
   </style>
@@ -108,44 +88,46 @@
         <span>Carissa Mayo</span>
       </div>
       <ul>
-        <li><a href="index.html#about"><span>About</span></a></li>
         <li><a href="index.html#projects"><span>Projects</span></a></li>
-        <li><a href="index.html#experience"><span>Experience</span></a></li>
-        <li><a href="index.html#education"><span>Education</span></a></li>
-        <li><a href="index.html#achievements"><span>Presentations</span></a></li>
-        <li><a href="index.html#personal"><span>Personal</span></a></li>
+        <li><a href="index.html"><span>Home</span></a></li>
       </ul>
     </div>
   </nav>
 
   <main class="page-shell">
-    <div class="container">
+    <div class="container-wide">
       <div class="page-header">
-        <h1>California RDRS Waste Baseline Dashboard (2020–2025)</h1>
-        <p class="page-subtitle">
-          Source data are CalRecycle RDRS quarterly reports (2020–2025): statewide totals (Report 8),
-          jurisdiction totals (Report 1), and facility totals by material stream (Report 3).
-        </p>
-
-        <div class="subtabs">
-          <a class="subtab" href="index.html#projects">
-            <i data-lucide="arrow-left"></i>
-            <span>Back to Projects</span>
-          </a>
-
-          <a class="subtab" href="index.html">
-            <i data-lucide="home"></i>
-            <span>Home</span>
-          </a>
+        <div>
+          <h1>California RDRS Waste Baseline Dashboard</h1>
+          <p class="page-subtitle">
+            Source data are CalRecycle RDRS quarterly reports (2020–2025): statewide totals (Report 8),
+            jurisdiction totals (Report 1), and facility totals by material stream (Report 3).
+          </p>
         </div>
+
+        <a class="btn" href="index.html#projects" style="white-space: nowrap;">
+          <i data-lucide="arrow-left"></i>
+          Back to Projects
+        </a>
       </div>
 
-      <div class="embed-wrap">
+      <div class="dashboard-wrap">
         <iframe
+          class="embed-iframe"
           title="CA_recycling_report"
           src="https://app.powerbi.com/reportEmbed?reportId=d671632f-897f-464d-94f3-0a4e1f7c6f0c&autoAuth=true&ctid=f6b6dd5b-f02f-441a-99a0-162ac5060bd2"
           allowfullscreen="true">
         </iframe>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <a class="project-link"
+           href="https://app.powerbi.com/reportEmbed?reportId=d671632f-897f-464d-94f3-0a4e1f7c6f0c&autoAuth=true&ctid=f6b6dd5b-f02f-441a-99a0-162ac5060bd2"
+           target="_blank"
+           rel="noopener">
+          <i data-lucide="external-link"></i>
+          <span>Open in Power BI</span>
+        </a>
       </div>
     </div>
   </main>
