@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7K2R34EEQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N7K2R34EEQ');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carissa Mayo - WA Water Quality Dashboard</title>
+
+  <link rel="icon" type="image/x-icon" href="tabicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="neural.png" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-shell {
+      padding-top: 90px;
+      padding-bottom: 60px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+      margin: 0;
+    }
+
+    .page-subtitle {
+      margin: 10px 0 0 0;
+      opacity: 0.9;
+      max-width: 900px;
+    }
+
+    .dashboard-wrap {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .tableauPlaceholder {
+      width: 100% !important;
+    }
+
+    @media (max-width: 700px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDWF7DK6"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <img src="tabicon.ico" alt="" class="brand-mark" />
+        <span>Carissa Mayo</span>
+      </div>
+      <ul>
+        <li><a href="index.html#projects"><span>Projects</span></a></li>
+        <li><a href="index.html"><span>Home</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1>WA Water Quality Dashboard</h1>
+          <p class="page-subtitle">
+            Interactive visualization of nitrate and orthophosphate measurements across Washington,
+            comparing surface and ground water samples.
+          </p>
+        </div>
+
+        <a class="btn" href="index.html#projects" style="white-space: nowrap;">
+          <i data-lucide="arrow-left"></i>
+          Back to Projects
+        </a>
+      </div>
+
+      <div class="dashboard-wrap">
+        <!-- START: Tableau embed -->
+        <div class='tableauPlaceholder' id='viz1769544987829' style='position: relative'>
+          <noscript>
+            <a href='#'>
+              <img alt='Water Quality Data Visualization for WA - Nitrate and Orthophosphate with ground and surface water samples '
+                   src='https://public.tableau.com/static/images/Wa/Water_Samples/Dashboard2/1_rss.png'
+                   style='border:none;' />
+            </a>
+          </noscript>
+
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='Water_Samples&#47;Dashboard2' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Wa/Water_Samples/Dashboard2/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+          </object>
+        </div>
+
+        <script type='text/javascript'>
+          var divElement = document.getElementById('viz1769544987829');
+          var vizElement = divElement.getElementsByTagName('object')[0];
+
+          // Make it responsive instead of hardcoding 1200px.
+          // Tableau uses the object width/height to size the viz.
+          vizElement.style.width = '100%';
+
+          // Choose a sane height curve
+          var w = divElement.offsetWidth;
+          if (w > 1000) {
+            vizElement.style.height = '800px';
+          } else if (w > 700) {
+            vizElement.style.height = '900px';
+          } else {
+            vizElement.style.height = '1200px';
+          }
+
+          var scriptElement = document.createElement('script');
+          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+          vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+        <!-- END: Tableau embed -->
+      </div>
+
+      <div style="margin-top: 14px;">
+        <a class="project-link"
+           href="https://public.tableau.com/views/Water_Samples/Dashboard2"
+           target="_blank"
+           rel="noopener">
+          <i data-lucide="external-link"></i>
+          <span>Open on Tableau Public</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
