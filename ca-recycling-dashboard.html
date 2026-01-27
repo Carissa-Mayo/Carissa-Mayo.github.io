@@ -1,21 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7K2R34EEQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N7K2R34EEQ');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>California RDRS Waste Baseline Dashboard</title>
+  <title>Carissa Mayo - California RDRS Dashboard</title>
+
+  <link rel="icon" type="image/x-icon" href="tabicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="neural.png" />
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="styles.css" />
+
   <style>
+    .page-shell {
+      padding-top: 90px;
+      padding-bottom: 60px;
+    }
+
+    .page-header {
+      margin-bottom: 14px;
+    }
+
+    .page-header h1 {
+      margin: 0;
+    }
+
+    .page-subtitle {
+      margin: 10px 0 0 0;
+      opacity: 0.9;
+      max-width: 950px;
+    }
+
+    .subtabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
+
+    .subtab {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.7);
+    }
+
     .embed-wrap {
       position: relative;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: 56.25%; /* 16:9 */
+      padding-top: 56.25%;
       border-radius: 16px;
       overflow: hidden;
       background: #f3f4f6;
     }
+
     .embed-wrap iframe {
       position: absolute;
       inset: 0;
@@ -23,28 +76,84 @@
       height: 100%;
       border: 0;
     }
-    .page {
-      padding: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+
+    @media (max-width: 900px) {
+      .embed-wrap {
+        max-width: 100%;
+        padding-top: 68%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .embed-wrap {
+        padding-top: 85%;
+        border-radius: 12px;
+      }
     }
   </style>
 </head>
-<body>
-  <main class="page">
-    <h1>California RDRS Waste Baseline Dashboard (2020–2025)</h1>
-    <p>
-      Source data are CalRecycle RDRS quarterly reports (2020–2025): statewide totals (Report 8),
-      jurisdiction totals (Report 1), and facility totals by material stream (Report 3).
-    </p>
 
-    <div class="embed-wrap">
-      <iframe
-        title="CA_recycling_report"
-        src="https://app.powerbi.com/reportEmbed?reportId=d671632f-897f-464d-94f3-0a4e1f7c6f0c&autoAuth=true&ctid=f6b6dd5b-f02f-441a-99a0-162ac5060bd2"
-        allowfullscreen="true">
-      </iframe>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDWF7DK6"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <img src="tabicon.ico" alt="" class="brand-mark" />
+        <span>Carissa Mayo</span>
+      </div>
+      <ul>
+        <li><a href="index.html#about"><span>About</span></a></li>
+        <li><a href="index.html#projects"><span>Projects</span></a></li>
+        <li><a href="index.html#experience"><span>Experience</span></a></li>
+        <li><a href="index.html#education"><span>Education</span></a></li>
+        <li><a href="index.html#achievements"><span>Presentations</span></a></li>
+        <li><a href="index.html#personal"><span>Personal</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="page-header">
+        <h1>California RDRS Waste Baseline Dashboard (2020–2025)</h1>
+        <p class="page-subtitle">
+          Source data are CalRecycle RDRS quarterly reports (2020–2025): statewide totals (Report 8),
+          jurisdiction totals (Report 1), and facility totals by material stream (Report 3).
+        </p>
+
+        <div class="subtabs">
+          <a class="subtab" href="index.html#projects">
+            <i data-lucide="arrow-left"></i>
+            <span>Back to Projects</span>
+          </a>
+
+          <a class="subtab" href="index.html">
+            <i data-lucide="home"></i>
+            <span>Home</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="embed-wrap">
+        <iframe
+          title="CA_recycling_report"
+          src="https://app.powerbi.com/reportEmbed?reportId=d671632f-897f-464d-94f3-0a4e1f7c6f0c&autoAuth=true&ctid=f6b6dd5b-f02f-441a-99a0-162ac5060bd2"
+          allowfullscreen="true">
+        </iframe>
+      </div>
     </div>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
 </body>
 </html>
