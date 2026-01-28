@@ -316,7 +316,7 @@
           <p>
             This project turns raw water quality measurements into a single interactive dashboard that lets you explore
             nutrient patterns across Washington, compare surface vs ground water, and evaluate seasonality.
-            The work is intentionally end-to-end: data ingestion, cleaning, relational modeling, analysis, and a
+            The work is end-to-end: data ingestion, cleaning, relational modeling, analysis, and a
             public-facing dashboard.
           </p>
 
@@ -337,15 +337,15 @@
             <div>
               <ul>
                 <li><strong>Make nutrient signals interpretable.</strong> Nitrate and orthophosphate are common indicators for nutrient loading and water quality concerns, but raw tables are hard to parse.</li>
-                <li><strong>Standardize messy terminology.</strong> Across sources and tables, chemical names and units can be inconsistent and break cross-sheet filtering unless normalized.</li>
-                <li><strong>Support comparisons that are actually fair.</strong> Compare groups using consistent time windows, sampling types, and aggregation rules.</li>
+                <li><strong>Support comparisons that are fair.</strong> Compare groups using consistent time windows, sampling types, and aggregation rules.</li>
+                <li><strong>Keep lineage traceable.</strong> Every chart in the dashboard should be reproducible from the pipeline outputs.</li>
               </ul>
             </div>
             <div>
               <ul>
-                <li><strong>Keep lineage traceable.</strong> Every chart in the dashboard should be reproducible from the pipeline outputs.</li>
-                <li><strong>Expose uncertainty.</strong> Summaries include sample sizes and uncertainty where appropriate, not just point estimates.</li>
-                <li><strong>Deliver a recruiter-friendly artifact.</strong> A clear story: data engineering decisions + analytics + a dashboard that answers real questions.</li>
+                <li><strong>Standardize messy terminology.</strong> Across sources and tables, attribute names and units can be inconsistent and break cross-sheet filtering unless normalized.</li>
+                <li><strong>Expose uncertainty.</strong> Summaries include sample sizes and uncertainty where appropriate.</li>
+                <li><strong>Deliver a public-facing artifact.</strong> A clear story: data aggregating decisions + analytics + a dashboard that answers real questions.</li>
               </ul>
             </div>
           </div>
@@ -357,15 +357,15 @@
             Data and structure
           </h2>
           <p>
-            The dashboard is built from monitoring measurements that include site metadata (location and identifiers),
-            sampling context (water type), chemistry, and lab results. The pipeline reshapes these into analysis-ready
+            The dashboard is built from the Water Qaulity Portal (WQP) monitoring measurements that include site metadata (location and identifiers),
+            sampling context (water type),and chemistry measurements The pipeline reshapes these into analysis-ready
             tables that are easy to join and filter reliably inside Tableau.
           </p>
 
           <table class="table-like" aria-label="Data tables used in this project">
             <thead>
               <tr>
-                <th>Table</th>
+                <th> </th>
                 <th>What it contains</th>
                 <th>Why it exists</th>
               </tr>
@@ -373,7 +373,7 @@
             <tbody>
               <tr>
                 <td><strong>sites</strong></td>
-                <td>Site identifiers, names, lat/lon, and watershed fields (when available).</td>
+                <td>Site identifiers, names, lat/lon, and watershed fields.</td>
                 <td>Separates stable site metadata from measurement-level data to avoid duplication and enable mapping.</td>
               </tr>
               <tr>
@@ -383,7 +383,7 @@
               </tr>
               <tr>
                 <td><strong>agg_month</strong></td>
-                <td>Monthly rollups by chemical and water type (counts and summary statistics).</td>
+                <td>Monthly aggregation by chemical and water type (counts and summary statistics).</td>
                 <td>Makes seasonality exploration fast and consistent across charts.</td>
               </tr>
               <tr>
@@ -393,10 +393,6 @@
               </tr>
             </tbody>
           </table>
-
-          <p class="small-note">
-            Note: the pipeline includes explicit standardization for chemical naming so filters behave consistently across all views.
-          </p>
         </div>
 
         <div class="section-card">
@@ -408,23 +404,23 @@
           <div class="callouts" role="list">
             <div class="callout" role="listitem">
               <p class="kicker">Standardization</p>
-              <p class="value">Normalized chemical labels (e.g., “ortho” vs “orthophosphate”) to one canonical dimension.</p>
+              <p class="value">Normalized chemical labels/units and site names to one canonical dimension.</p>
             </div>
             <div class="callout" role="listitem">
               <p class="kicker">Typed outputs</p>
-              <p class="value">Loaded raw TSVs into staging tables, then cast into typed analysis tables to prevent silent parsing issues.</p>
+              <p class="value">Loaded raw CSVs into staging tables, then cast into analysis tables to prevent joining issues.</p>
             </div>
             <div class="callout" role="listitem">
               <p class="kicker">Reproducibility</p>
-              <p class="value">All derived fields and aggregations are produced upstream so Tableau stays lightweight and consistent.</p>
+              <p class="value">All derived fields and aggregations are produced in SQL Server so Tableau stays lightweight and consistent.</p>
             </div>
           </div>
 
           <div class="divider"></div>
 
           <ul>
-            <li><strong>Unit and format handling:</strong> enforced consistent numeric types and date parsing to avoid mixed-type fields breaking extracts.</li>
-            <li><strong>Missingness strategy:</strong> missing values are retained as missing (not converted to zero), and summaries track sample counts.</li>
+            <li><strong>Unit and format handling:</strong> enforced consistent numeric units and date parsing.</li>
+            <li><strong>Missingness strategy:</strong> missing values are retained as missing (not converted to zero), and summaries track sample counts. Samples at the detection limit are also inlcuded and tracked.</li>
             <li><strong>Aggregation rules:</strong> monthly summaries use consistent grouping keys so charts agree with each other across pages.</li>
           </ul>
         </div>
@@ -435,14 +431,13 @@
             Analyses shown in the dashboard
           </h2>
           <p>
-            The dashboard mixes exploratory visualization with a small set of targeted statistical comparisons. The intent is
-            not to over-model, but to provide interpretable summaries that help a viewer answer practical questions like:
+            The dashboard mixes exploratory visualization with a small set of targeted statistical comparisons. This provides interpretable summaries that help a user answer practical questions like:
             “Do concentrations differ by season?” and “Do patterns look different between ground and surface water?”
           </p>
 
           <ul>
-            <li><strong>Seasonal comparison tests:</strong> summer vs winter mean comparisons per chemical and water type (as defined in the pipeline).</li>
-            <li><strong>Confidence intervals:</strong> CIs displayed alongside effect estimates to show uncertainty, not just a p value.</li>
+            <li><strong>Seasonal comparison tests:</strong> summer vs winter mean comparisons per chemical and water type using bootstrap analysis.</li>
+            <li><strong>Confidence intervals:</strong> 95% CIs displayed alongside effect estimates to show uncertainty, not just a p value.</li>
             <li><strong>Mapping and distribution views:</strong> spatial context + distribution plots to identify outliers and site-to-site variation.</li>
           </ul>
         </div>
@@ -453,15 +448,15 @@
             Key results
           </h2>
           <p>
-            The specific numbers below reflect the analytical summaries produced by the pipeline and displayed in the dashboard
-            (seasonal mean comparisons). Interpret them as “estimated difference between groups” with uncertainty and sample size context.
+            The specific numbers below reflect the analytical summaries produced by the statistical tests and displayed in the dashboard
+            (Summer vs Winter mean comparisons). Interpret them as “estimated difference between groups” with uncertainty and sample size context.
           </p>
 
           <table class="table-like" aria-label="Example results for seasonal comparisons">
             <thead>
               <tr>
                 <th>Chemical</th>
-                <th>Comparison</th>
+                <th>Water type</th>
                 <th>Effect</th>
                 <th>95% CI</th>
                 <th>p value</th>
@@ -471,26 +466,44 @@
             <tbody>
               <tr>
                 <td><strong>Nitrate</strong></td>
-                <td>Summer vs Winter mean</td>
-                <td>-0.520</td>
-                <td>[-2.201, 1.095]</td>
-                <td>0.564</td>
-                <td>n=468 (summer), n=280 (winter)</td>
+                <td>Groundwater</td>
+                <td>1.83</td>
+                <td>[0.80, 3.00]</td>
+                <td>0.00</td>
+                <td>n=72 (summer), n=24 (winter)</td>
+              </tr>
+              <tr>
+                <td> </td>
+                <td>Surface Water</td>
+                <td>-0.80</td>
+                <td>[-3.88, 1.81]</td>
+                <td>0.55</td>
+                <td>n=162 (summer), n=116 (winter)</td>
               </tr>
               <tr>
                 <td><strong>Orthophosphate</strong></td>
-                <td>Summer vs Winter mean</td>
-                <td>0.0220</td>
-                <td>[-0.0162, 0.0556]</td>
-                <td>0.252</td>
-                <td>n=466 (summer), n=228 (winter)</td>
+                <td>Groundwater</td>
+                <td>-0.01</td>
+                <td>[-2.92, 7.62]</td>
+                <td>0.21</td>
+                <td>n=96 (summer), n=34 (winter)</td>
+              </tr>
+              <tr>
+                <td> </td>
+                <td>Surface Water</td>
+                <td>2.94</td>
+                <td>[-6.42, 0.10]</td>
+                <td>0.63</td>
+                <td>n=137 (summer), n=80 (winter)</td>
               </tr>
             </tbody>
           </table>
 
           <p class="small-note">
-            What this means in plain terms: for these specific seasonal comparisons, the uncertainty intervals overlap zero and the p values are not small.
-            That is evidence that the seasonal mean differences (as defined here) are not strongly separated in this dataset.
+            What this means in plain terms: Nitrate groundwater has significant evidence for seasonality between the summer and winter seasons.
+            The positive effect value represents higher summer measurements compared to winter measurements.
+            However, for the other 3/4 of these seasonal comparisons, the uncertainty intervals overlap zero and the p values are not small.
+            That is evidence that the seasonal mean differences are not strongly separated for these measurements, as shown in this analysis.
             The more useful signal may be spatial variation, site-specific behavior, and differences by water type, which the dashboard makes easy to explore.
           </p>
         </div>
@@ -514,7 +527,7 @@
               <ul>
                 <li><strong>Add stratified views:</strong> break out comparisons by watershed or region, not only statewide summaries.</li>
                 <li><strong>Model-based layer:</strong> add a simple hierarchical model or regression adjustment to control for site and season simultaneously.</li>
-                <li><strong>Data quality flags:</strong> surface detection limits, censored values, and method codes more explicitly in the UI.</li>
+                <li><strong>Data quality flags:</strong> surface detection limits, censored values, and method codes more explicitly in the dashboard.</li>
               </ul>
             </div>
           </div>
