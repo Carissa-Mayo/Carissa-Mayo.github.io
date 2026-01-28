@@ -362,70 +362,7 @@
             tables that are easy to join and filter reliably inside Tableau.
           </p>
 
-          <table class="table-like" aria-label="Data tables used in this project">
-            <thead>
-              <tr>
-                <th> </th>
-                <th>What it contains</th>
-                <th>Why it exists</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>sites</strong></td>
-                <td>Site identifiers, names, lat/lon, and watershed fields.</td>
-                <td>Separates stable site metadata from measurement-level data to avoid duplication and enable mapping.</td>
-              </tr>
-              <tr>
-                <td><strong>results</strong></td>
-                <td>Measurement records keyed by site, date/time, water type, and chemical.</td>
-                <td>Single canonical measurement table for filtering and aggregation.</td>
-              </tr>
-              <tr>
-                <td><strong>agg_month</strong></td>
-                <td>Monthly aggregation by chemical and water type (counts and summary statistics).</td>
-                <td>Makes seasonality exploration fast and consistent across charts.</td>
-              </tr>
-              <tr>
-                <td><strong>test_results</strong></td>
-                <td>Precomputed hypothesis tests and confidence intervals for defined comparisons.</td>
-                <td>Lets the dashboard display analytical summaries without recomputing statistics inside Tableau.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="section-card">
-          <h2 class="section-title">
-            <i data-lucide="settings"></i>
-            Pipeline and QA decisions
-          </h2>
-
-          <div class="callouts" role="list">
-            <div class="callout" role="listitem">
-              <p class="kicker">Standardization</p>
-              <p class="value">Normalized chemical labels/units and site names to one canonical dimension.</p>
-            </div>
-            <div class="callout" role="listitem">
-              <p class="kicker">Typed outputs</p>
-              <p class="value">Loaded raw CSVs into staging tables, then cast into analysis tables to prevent joining issues.</p>
-            </div>
-            <div class="callout" role="listitem">
-              <p class="kicker">Reproducibility</p>
-              <p class="value">All derived fields and aggregations are produced in SQL Server so Tableau stays lightweight and consistent.</p>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <ul>
-            <li><strong>Unit and format handling:</strong> enforced consistent numeric units and date parsing.</li>
-            <li><strong>Missingness strategy:</strong> missing values are retained as missing (not converted to zero), and summaries track sample counts. Samples at the detection limit are also inlcuded and tracked.</li>
-            <li><strong>Aggregation rules:</strong> monthly summaries use consistent grouping keys so charts agree with each other across pages.</li>
-          </ul>
-        </div>
-
-        <div class="section-card">
+          <div class="section-card">
           <h2 class="section-title">
             <i data-lucide="flask-conical"></i>
             Analyses shown in the dashboard
@@ -500,12 +437,75 @@
           </table>
 
           <p class="small-note">
-            What this means in plain terms: Nitrate groundwater has significant evidence for seasonality between the summer and winter seasons.
+            What this means: Nitrate groundwater has significant evidence for seasonality between the summer and winter seasons.
             The positive effect value represents higher summer measurements compared to winter measurements.
             However, for the other 3/4 of these seasonal comparisons, the uncertainty intervals overlap zero and the p values are not small.
             That is evidence that the seasonal mean differences are not strongly separated for these measurements, as shown in this analysis.
             The more useful signal may be spatial variation, site-specific behavior, and differences by water type, which the dashboard makes easy to explore.
           </p>
+        </div>
+
+          <table class="table-like" aria-label="Data tables used in this project">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>What it contains</th>
+                <th>Why it exists</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>sites</strong></td>
+                <td>Site identifiers, names, lat/lon, and watershed fields.</td>
+                <td>Separates stable site metadata from measurement-level data to avoid duplication and enable mapping.</td>
+              </tr>
+              <tr>
+                <td><strong>results</strong></td>
+                <td>Measurement records keyed by site, date/time, water type, and chemical.</td>
+                <td>Single canonical measurement table for filtering and aggregation.</td>
+              </tr>
+              <tr>
+                <td><strong>agg_month</strong></td>
+                <td>Monthly aggregation by chemical and water type (counts and summary statistics).</td>
+                <td>Makes seasonality exploration fast and consistent across charts.</td>
+              </tr>
+              <tr>
+                <td><strong>test_results</strong></td>
+                <td>Precomputed hypothesis tests and confidence intervals for defined comparisons.</td>
+                <td>Lets the dashboard display analytical summaries without recomputing statistics inside Tableau.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-card">
+          <h2 class="section-title">
+            <i data-lucide="settings"></i>
+            Pipeline and QA decisions
+          </h2>
+
+          <div class="callouts" role="list">
+            <div class="callout" role="listitem">
+              <p class="kicker">Standardization</p>
+              <p class="value">Normalized chemical labels/units and site names to one canonical dimension.</p>
+            </div>
+            <div class="callout" role="listitem">
+              <p class="kicker">Typed outputs</p>
+              <p class="value">Loaded raw CSVs into staging tables, then cast into analysis tables to prevent joining issues.</p>
+            </div>
+            <div class="callout" role="listitem">
+              <p class="kicker">Reproducibility</p>
+              <p class="value">All derived fields and aggregations are produced in SQL Server so Tableau stays lightweight and consistent.</p>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <ul>
+            <li><strong>Unit and format handling:</strong> enforced consistent numeric units and date parsing.</li>
+            <li><strong>Missingness strategy:</strong> missing values are retained as missing (not converted to zero), and summaries track sample counts. Samples at the detection limit are also inlcuded and tracked.</li>
+            <li><strong>Aggregation rules:</strong> monthly summaries use consistent grouping keys so charts agree with each other across pages.</li>
+          </ul>
         </div>
 
         <div class="section-card">
