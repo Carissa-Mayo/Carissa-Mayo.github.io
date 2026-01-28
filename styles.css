@@ -361,6 +361,21 @@ nav a:hover {
     color: var(--ocean-deep);
 }
 
+.tableau-footer-link {
+  margin-top: 14px;
+}
+
+.project-link .github-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex: 0 0 auto;
+
+  /* THIS is the key: SVG uses fill, not color */
+  fill: currentColor;
+}
+
+
 /* Project Footer Actions */
 .project-actions {
     margin-top: auto;
