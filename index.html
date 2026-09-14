@@ -529,7 +529,7 @@
         <div class="container">
             <h2>Education</h2>
             
-            <div class="education-item">
+            <div class="education-item" style="padding-bottom: 1.5rem;">
                   <h3>
                       <i data-lucide="graduation-cap"></i>
                       <span>M.S. Quantitative Ecology & Resource Management</span>
@@ -542,8 +542,8 @@
                       transmissible cancer dynamics in soft-shell clam populations.
                   </div>
               <div class="project-actions"
-                   style="justify-content: space-evenly; border-top: none;">
-                  
+                   style="justify-content: space-evenly; border-top: none; padding: 0.75rem 0 0;">
+              
                   <a class="project-link"
                      href="files/thesis.pdf"
                      target="_blank"
@@ -552,13 +552,43 @@
                       <span>View Thesis</span>
                   </a>
               
-                  <a class="project-link"
-                     href="files/defense.pptx"
-                     target="_blank"
-                     rel="noopener">
+                  <button type="button"
+                          class="project-link project-link--button"
+                          onclick="
+                            const preview = document.getElementById('defense-preview');
+                            const isOpen = preview.style.display === 'block';
+                            preview.style.display = isOpen ? 'none' : 'block';
+                            this.querySelector('span').textContent = isOpen ? 'Preview Defense' : 'Hide Defense';
+                          ">
                       <i data-lucide="presentation"></i>
-                      <span>View Defense</span>
-                  </a>
+                      <span>Preview Defense</span>
+                  </button>
+              
+              </div>
+              <div id="defense-preview"
+                   style="display: none; margin-top: 1rem;">
+              
+                  <iframe
+                      src="files/defense.pdf#view=FitH"
+                      title="M.S. Thesis Defense Presentation"
+                      style="
+                          width: 100%;
+                          height: min(70vh, 700px);
+                          border: 1px solid var(--border);
+                          border-radius: 10px;
+                      ">
+                  </iframe>
+              
+                  <div style="text-align: center; margin-top: 0.75rem;">
+                      <a href="files/defense.pdf"
+                         class="project-link"
+                         target="_blank"
+                         rel="noopener">
+                          <span>Open Full Presentation</span>
+                          <i data-lucide="external-link"></i>
+                      </a>
+                  </div>
+              
               </div>
             </div>
             <div class="education-item">
